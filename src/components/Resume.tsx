@@ -1,6 +1,6 @@
 "use client";
 
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Reveal } from "./Reveal";
 
 export function Resume() {
@@ -17,7 +17,7 @@ export function Resume() {
           </div>
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             <a
-              href={portfolioData.resume}
+              href={portfolioData.social.resume}
               download="Hemant_Agrawal_Resume.docx"
               className="rounded-full bg-invert px-6 py-4 text-center text-[12px] text-invert-fg"
               data-cursor="link"
@@ -25,7 +25,7 @@ export function Resume() {
               Download Resume
             </a>
             <a
-              href={portfolioData.resume}
+              href={portfolioData.social.resume}
               target="_blank"
               rel="noreferrer"
               className="rounded-full border border-line px-6 py-4 text-center text-[12px] text-fg"

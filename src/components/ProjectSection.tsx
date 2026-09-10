@@ -3,10 +3,10 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { hrefFor, isPlaceholder, portfolioData, type Project } from "@/data/portfolio";
+import { hrefFor, isPlaceholder, portfolioData, type Project } from "@/data/portfolioData";
 import { ProjectCard } from "./ProjectCard";
 
-export function Projects() {
+export function ProjectSection() {
   const [active, setActive] = useState<Project | null>(null);
 
   useEffect(() => {
@@ -82,6 +82,10 @@ export function Projects() {
                   >
                     GITHUB ↗
                   </a>
+                ) : active.companyRepo ? (
+                  <span className="rounded-full border border-line px-6 py-4 text-[12px] text-muted">
+                    {active.company} · company repository
+                  </span>
                 ) : (
                   isPlaceholder(active.github) && (
                     <span className="rounded-full border border-line px-6 py-4 text-[12px] text-muted">

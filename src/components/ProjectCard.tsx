@@ -1,6 +1,6 @@
 "use client";
 
-import { hrefFor, isPlaceholder, type Project } from "@/data/portfolio";
+import { hrefFor, isPlaceholder, type Project } from "@/data/portfolioData";
 
 export function ProjectCard({
   project,
@@ -51,7 +51,10 @@ export function ProjectCard({
               GITHUB ↗
             </a>
           )}
-          {!github && isPlaceholder(project.github) && (
+          {project.companyRepo && (
+            <span className="text-[12px] text-muted">{project.company} · company repository</span>
+          )}
+          {!github && !project.companyRepo && isPlaceholder(project.github) && (
             <span className="text-[12px] text-muted">GITHUB — YOUR_GITHUB_URL</span>
           )}
           <span className="ml-auto text-[11px] tracking-[0.16em] text-muted transition-transform duration-300 group-hover:translate-x-1">

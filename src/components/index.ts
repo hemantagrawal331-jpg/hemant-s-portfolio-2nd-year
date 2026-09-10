@@ -1,0 +1,11 @@
+export { About } from "./About";
+export { Contact } from "./Contact";
+export { Education } from "./Education";
+export { Experience } from "./Experience";
+export { Footer } from "./Footer";
+export { Hero } from "./Hero";
+export { Navbar } from "./Navbar";
+export { ProjectCard } from "./ProjectCard";
+export { ProjectSection } from "./ProjectSection";
+export { Skills } from "./Skills";
+export { ThemeToggle } from "./ThemeToggle";

@@ -1,0 +1,14 @@
+---
+description: Never invent facts about Hemant Agrawal
+alwaysApply: true
+---
+
+# Accuracy
+
+Never invent information about Hemant Agrawal.
+
+Do not fabricate companies, job titles, salary, CGPA, certifications, awards, years of experience, GitHub stars/followers, project users, accuracy percentages, performance metrics, client names, revenue, testimonials, phone numbers, emails, or social links.
+
+When a value is missing, use a visible placeholder (`YOUR_GITHUB_URL`, `YOUR_LINKEDIN_URL`, `YOUR_EMAIL`, `YOUR_PHONE`) instead of making one up.
+
+Edit content only in `src/data/portfolioData.ts`. Keep verified facts; do not add resume extras (Class X/XII %, Coursera/Udemy, SIH, IIT Roorkee) unless Hemant asks.

@@ -1,14 +1,15 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { hrefFor, portfolioData } from "@/data/portfolio";
+import { hrefFor, portfolioData } from "@/data/portfolioData";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
-  const email = hrefFor(portfolioData.email, "email");
-  const github = hrefFor(portfolioData.github);
-  const linkedin = hrefFor(portfolioData.linkedin);
-  const instagram = hrefFor(portfolioData.instagram);
+  const email = hrefFor(portfolioData.social.email, "email");
+  const github = hrefFor(portfolioData.social.github);
+  const linkedin = hrefFor(portfolioData.social.linkedin);
+  const instagram = hrefFor(portfolioData.social.instagram);
+  const phone = hrefFor(portfolioData.social.phone, "phone");
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,15 +34,20 @@ export function Contact() {
           <p className="mt-6 max-w-md text-muted">{portfolioData.contact.text}</p>
           <div className="mt-6 flex flex-col gap-1">
             <a href={email} className="text-fg" data-cursor="link">
-              {portfolioData.email}
+              {portfolioData.social.email}
             </a>
             <a
-              href={hrefFor(portfolioData.personalEmail, "email")}
+              href={hrefFor(portfolioData.social.personalEmail, "email")}
               className="text-sm text-muted"
               data-cursor="link"
             >
-              {portfolioData.personalEmail}
+              {portfolioData.social.personalEmail}
             </a>
+            {phone && (
+              <a href={phone} className="text-sm text-muted" data-cursor="link">
+                {portfolioData.social.phone}
+              </a>
+            )}
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {linkedin && (

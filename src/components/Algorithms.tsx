@@ -1,6 +1,6 @@
 "use client";
 
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 

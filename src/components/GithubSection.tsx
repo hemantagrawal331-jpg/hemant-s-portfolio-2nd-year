@@ -1,12 +1,10 @@
 "use client";
 
-import { hrefFor, portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 export function GithubSection() {
-  const github = hrefFor(portfolioData.github);
-
   return (
     <section className="section bg-bg">
       <div className="stage">
@@ -14,7 +12,7 @@ export function GithubSection() {
           <SectionHeading
             kicker="// ENGINEERING"
             title="Code, every day."
-            text="Profile connected. Contribution counts are not shown because they are not pulled from the GitHub API."
+            text="Internship automation work at Attentive.ai, plus personal projects. Contribution counts are not shown because they are not pulled from the GitHub API."
           />
         </Reveal>
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
@@ -32,28 +30,28 @@ export function GithubSection() {
           <div className="grid gap-3">
             <Reveal delay={0.05}>
               <div className="card card-interactive p-5">
-                <p className="label">Known repository</p>
-                <p className="mt-3 font-display text-2xl text-fg">{portfolioData.githubRepoName}</p>
-                <p className="mt-2 text-sm text-muted">Java API automation framework from internship work.</p>
+                <p className="label">Major internship project</p>
+                <p className="mt-3 font-display text-2xl text-fg">{portfolioData.personal.githubRepoName}</p>
+                <p className="mt-2 text-sm text-muted">
+                  Java API automation framework at Attentive.ai. Pushed to the company repository — no public GitHub link.
+                </p>
               </div>
             </Reveal>
             <Reveal delay={0.08}>
+              <div className="card card-interactive p-5">
+                <p className="label">More internship projects</p>
+                <p className="mt-3 text-fg">Beam MT API Automation</p>
+                <p className="mt-2 text-sm text-muted">
+                  Plus authentication, file-upload, request-status, and other API workflows during the Attentive.ai internship. Also in the company repository.
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
               <div className="card card-interactive p-5">
                 <p className="label">Focus</p>
                 <p className="mt-3 text-fg">Readable tests, reusable helpers, honest results.</p>
               </div>
             </Reveal>
-            {github && (
-              <a
-                href={github}
-                target="_blank"
-                rel="noreferrer"
-                className="card card-interactive p-5 text-[12px] tracking-[0.16em] text-fg"
-                data-cursor="link"
-              >
-                VIEW GITHUB ↗
-              </a>
-            )}
           </div>
         </div>
       </div>

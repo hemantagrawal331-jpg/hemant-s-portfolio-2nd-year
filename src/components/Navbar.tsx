@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { useTheme } from "@/lib/ThemeProvider";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -43,7 +43,7 @@ export function Navbar() {
               data-cursor="link"
               onClick={() => setOpen(false)}
             >
-              {portfolioData.firstName.toLowerCase()}.
+              {portfolioData.personal.firstName.toLowerCase()}.
             </a>
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
@@ -65,7 +65,7 @@ export function Navbar() {
             <div className="flex items-center gap-2">
               <ThemeToggle lightNav={lightNav} />
               <a
-                href={portfolioData.resume}
+                href={portfolioData.social.resume}
                 download="Hemant_Agrawal_Resume.docx"
                 className={`hidden rounded-full px-4 py-2 text-[12px] font-medium sm:inline-flex ${
                   lightNav ? "bg-ink text-white" : "bg-fg text-bg"
@@ -132,7 +132,7 @@ export function Navbar() {
               ))}
             </div>
             <a
-              href={portfolioData.resume}
+              href={portfolioData.social.resume}
               download="Hemant_Agrawal_Resume.docx"
               onClick={() => setOpen(false)}
               className="mt-6 w-full rounded-full bg-invert px-6 py-4 text-center text-sm text-invert-fg"

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 

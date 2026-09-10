@@ -13,7 +13,7 @@ import { Hero } from "@/components/Hero";
 import { Learning } from "@/components/Learning";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
-import { Projects } from "@/components/Projects";
+import { ProjectSection } from "@/components/ProjectSection";
 import { Resume } from "@/components/Resume";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { Skills } from "@/components/Skills";
@@ -37,7 +37,7 @@ export default function HomePage() {
             <About />
             <Experience />
             <Skills />
-            <Projects />
+            <ProjectSection />
             <Algorithms />
             <Education />
             <Learning />

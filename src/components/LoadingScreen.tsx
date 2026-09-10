@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { portfolioData } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolioData";
 
 export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [progress, setProgress] = useState(1);
@@ -55,7 +55,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              {portfolioData.name.replace(" ", "").toUpperCase()}
+              {portfolioData.personal.name.replace(" ", "").toUpperCase()}
             </motion.p>
             <p className="mt-3 text-[11px] tracking-[0.28em] text-white/40">
               AI & ML · QA AUTOMATION
