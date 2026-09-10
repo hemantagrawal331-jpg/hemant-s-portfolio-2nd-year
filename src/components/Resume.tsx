@@ -19,19 +19,19 @@ export function Resume() {
             <a
               href={portfolioData.social.resume}
               download="Hemant_Agrawal_Resume.docx"
-              className="rounded-full bg-invert px-6 py-4 text-center text-[12px] text-invert-fg"
+              className="btn-line rounded-full bg-invert px-6 py-4 text-center text-[12px] text-invert-fg"
               data-cursor="link"
             >
-              Download Resume
+              Download Resume <span className="arrow">↗</span>
             </a>
             <a
               href={portfolioData.social.resume}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-line px-6 py-4 text-center text-[12px] text-fg"
+              className="btn-line rounded-full border border-line px-6 py-4 text-center text-[12px] text-fg"
               data-cursor="link"
             >
-              View Resume
+              View Resume <span className="arrow">↗</span>
             </a>
           </div>
         </div>

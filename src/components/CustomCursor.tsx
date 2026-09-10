@@ -30,7 +30,7 @@ export function CustomCursor() {
       const cursor = target?.closest("[data-cursor]")?.getAttribute("data-cursor");
       if (cursor === "view") {
         setMode("view");
-        setLabel("VIEW");
+        setLabel("VIEW PROJECT ↗");
       } else if (cursor === "link" || target?.closest("a, button")) {
         setMode("link");
         setLabel("");
@@ -57,7 +57,7 @@ export function CustomCursor() {
 
   if (coarse || reduced) return null;
 
-  const size = mode === "view" ? 88 : mode === "link" ? 42 : 14;
+  const size = mode === "view" ? 108 : mode === "link" ? 42 : 14;
 
   return (
     <div
@@ -66,7 +66,7 @@ export function CustomCursor() {
       style={{ marginLeft: -size / 2, marginTop: -size / 2 }}
     >
       <div
-        className="flex items-center justify-center rounded-full border border-white bg-white/10 text-[10px] font-medium tracking-[0.24em] text-white transition-[width,height,background-color] duration-300 ease-cinematic"
+        className="flex items-center justify-center rounded-full border border-white bg-white/10 text-center text-[9px] font-medium tracking-[0.16em] text-white transition-[width,height,background-color] duration-300 ease-cinematic"
         style={{ width: size, height: size }}
       >
         {label}

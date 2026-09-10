@@ -3,13 +3,17 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
+import { useActiveSection } from "@/lib/useActiveSection";
 import { useTheme } from "@/lib/ThemeProvider";
 import { ThemeToggle } from "./ThemeToggle";
+
+const NAV_IDS = portfolioData.nav.map((item) => item.href);
 
 export function Navbar() {
   const { theme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const active = useActiveSection(NAV_IDS);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -30,11 +34,15 @@ export function Navbar() {
     <>
       <header className="sticky top-0 z-50 w-full">
         <div
-          className={`border-b transition-colors duration-500 ${
+          className={`border-b transition-all duration-500 ${
             scrolled || open ? "glass border-line" : "border-transparent bg-transparent"
           }`}
         >
-          <div className="stage flex h-16 items-center justify-between md:h-[72px]">
+          <div
+            className={`stage flex items-center justify-between transition-[height] duration-500 ${
+              scrolled ? "h-14 md:h-16" : "h-16 md:h-[72px]"
+            }`}
+          >
             <a
               href="#top"
               className={`font-display text-lg font-semibold tracking-tight ${
@@ -48,19 +56,33 @@ export function Navbar() {
             </a>
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
-              {portfolioData.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`group relative text-[12px] tracking-[0.06em] transition-colors ${
-                    lightNav ? "text-ink/55 hover:text-ink" : "text-fg/55 hover:text-fg"
-                  }`}
-                  data-cursor="link"
-                >
-                  {item.label}
-                  <span className="absolute -bottom-1 left-0 h-px w-0 bg-current transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
+              {portfolioData.nav.map((item) => {
+                const isActive = active === item.href;
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`group relative text-[12px] tracking-[0.06em] transition-colors ${
+                      lightNav
+                        ? isActive
+                          ? "text-ink"
+                          : "text-ink/50 hover:text-ink"
+                        : isActive
+                          ? "text-fg"
+                          : "text-fg/50 hover:text-fg"
+                    }`}
+                    data-cursor="link"
+                    aria-current={isActive ? "page" : undefined}
+                  >
+                    {item.label}
+                    <span
+                      className={`absolute -bottom-1 left-0 h-px bg-current transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                    />
+                  </a>
+                );
+              })}
             </nav>
 
             <div className="flex items-center gap-2">
@@ -68,12 +90,12 @@ export function Navbar() {
               <a
                 href={portfolioData.social.resume}
                 download="Hemant_Agrawal_Resume.docx"
-                className={`hidden rounded-full px-4 py-2 text-[12px] font-medium sm:inline-flex ${
+                className={`btn-line hidden rounded-full px-4 py-2 text-[12px] font-medium sm:inline-flex ${
                   lightNav ? "bg-ink text-white" : "bg-fg text-bg"
                 }`}
                 data-cursor="link"
               >
-                Resume
+                Resume <span className="arrow">↗</span>
               </a>
               <button
                 type="button"
@@ -136,9 +158,9 @@ export function Navbar() {
               href={portfolioData.social.resume}
               download="Hemant_Agrawal_Resume.docx"
               onClick={() => setOpen(false)}
-              className="mt-6 w-full rounded-full bg-invert px-6 py-4 text-center text-sm text-invert-fg"
+              className="btn-line mt-6 w-full rounded-full bg-invert px-6 py-4 text-center text-sm text-invert-fg"
             >
-              Resume
+              Resume <span className="arrow">↗</span>
             </a>
           </motion.nav>
         )}

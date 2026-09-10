@@ -7,9 +7,6 @@ import { portfolioData } from "@/data/portfolioData";
 export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void }>) {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
-  const steps = portfolioData.personal.loaderSteps;
-  const stepIndex = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
-  const step = steps[stepIndex];
 
   useEffect(() => {
     let frame = 0;
@@ -24,11 +21,11 @@ export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void 
       onComplete();
     };
 
-    const failsafe = window.setTimeout(finish, 2200);
+    const failsafe = window.setTimeout(finish, 1800);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (reduced) {
-      doneTimer = window.setTimeout(finish, 80);
+      doneTimer = window.setTimeout(finish, 40);
       return () => {
         window.clearTimeout(failsafe);
         window.clearTimeout(doneTimer);
@@ -36,7 +33,7 @@ export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void 
     }
 
     const started = performance.now();
-    const duration = 1400;
+    const duration = 1100;
 
     const tick = (now: number) => {
       const t = Math.min(1, (now - started) / duration);
@@ -45,7 +42,7 @@ export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void 
       if (t < 1) {
         frame = requestAnimationFrame(tick);
       } else {
-        doneTimer = window.setTimeout(finish, 180);
+        doneTimer = window.setTimeout(finish, 160);
       }
     };
 
@@ -65,41 +62,35 @@ export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void 
           role="status"
           aria-live="polite"
           aria-label="Loading portfolio"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ clipPath: "inset(0 0 100% 0)", opacity: 0.4 }}
+          transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
         >
-          <div className="flex w-[min(420px,80vw)] flex-col items-center text-center">
+          <div className="flex w-[min(440px,84vw)] flex-col items-center text-center">
             <motion.p
-              className="display text-[clamp(1.8rem,6vw,3.4rem)] text-white"
-              initial={{ opacity: 0, y: 12 }}
+              className="display text-[clamp(2rem,7vw,4rem)] text-white"
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
             >
-              {portfolioData.personal.name.replace(" ", "").toUpperCase()}
+              {portfolioData.personal.name.toUpperCase()}
             </motion.p>
-            <p className="mt-3 text-[11px] tracking-[0.28em] text-white/40">
-              {portfolioData.personal.loaderLine}
+            <p className="mt-4 text-[11px] tracking-[0.28em] text-white/42">
+              CSE × AI/ML × AUTOMATION
             </p>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={step.label}
-                className="mt-14"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.22 }}
-              >
-                <p className="font-mono text-[12px] tracking-[0.28em] text-white/35">{step.index}</p>
-                <p className="mt-2 font-display text-5xl font-semibold tracking-tight text-white md:text-6xl">
-                  {step.label}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-            <div className="mt-8 h-[2px] w-full overflow-hidden bg-white/15">
-              <motion.div
-                className="h-full bg-white"
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.12, ease: "linear" }}
-              />
+            <p className="mt-14 font-mono text-[11px] tracking-[0.22em] text-white/35">
+              INITIALIZING SYSTEM...
+            </p>
+            <div className="mt-4 flex w-full items-center gap-4">
+              <div className="h-[3px] flex-1 overflow-hidden bg-white/12">
+                <motion.div
+                  className="h-full bg-white"
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.1, ease: "linear" }}
+                />
+              </div>
+              <span className="font-mono text-[11px] tracking-[0.16em] text-white/55">
+                {String(progress).padStart(3, "0")}%
+              </span>
             </div>
           </div>
         </motion.div>

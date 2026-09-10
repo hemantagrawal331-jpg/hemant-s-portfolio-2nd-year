@@ -13,26 +13,29 @@ export function ProjectCard({
   const github = hrefFor(project.github);
 
   return (
-    <article className="group card card-interactive flex min-h-[320px] flex-col justify-between p-5 sm:p-6">
+    <article className="group card card-interactive relative flex min-h-[360px] flex-col justify-between overflow-hidden p-0">
       <button
         type="button"
-        className="flex flex-1 flex-col text-left"
+        className="flex flex-1 flex-col p-6 text-left sm:p-7"
         onClick={() => onOpen(project)}
         data-cursor="view"
       >
-        <div className="mb-6 flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-fg/20" />
-          <span className="h-2 w-2 rounded-full bg-fg/20" />
-          <span className="h-2 w-2 rounded-full bg-fg/20" />
-          <p className="ml-2 font-mono text-[11px] tracking-[0.14em] text-muted">
-            {`// PROJECT ${project.index} · ${project.tag}`}
+        <div className="mb-8 flex items-center justify-between">
+          <p className="font-mono text-[11px] tracking-[0.14em] text-muted">
+            {`0${project.index} / ${project.tag}`}
           </p>
+          <span className="text-[11px] tracking-[0.16em] text-muted transition-transform duration-500 group-hover:translate-x-1">
+            VIEW ↗
+          </span>
         </div>
-        <h3 className="font-display text-2xl font-semibold tracking-tight text-fg transition-transform duration-500 group-hover:-translate-y-0.5 md:text-3xl">
+        <div className="visual-panel mb-6 h-28 overflow-hidden rounded-2xl border border-line bg-[linear-gradient(135deg,var(--accent-dim),transparent_62%)]">
+          <div className="h-full w-full origin-center transition-transform duration-700 ease-cinematic group-hover:scale-110" />
+        </div>
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-fg transition-transform duration-500 group-hover:-translate-y-1 md:text-3xl">
           {project.name}
         </h3>
         <p className="mt-4 text-sm leading-relaxed text-muted">{project.summary}</p>
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap gap-2 opacity-80 transition-opacity duration-300 group-hover:opacity-100">
           {project.tech.map((item) => (
             <span key={item} className="chip">
               {item}
@@ -40,7 +43,7 @@ export function ProjectCard({
           ))}
         </div>
       </button>
-      <div className="mt-5 flex flex-wrap items-center gap-3">
+      <div className="flex flex-wrap items-center gap-3 border-t border-line px-6 py-4 sm:px-7">
         {live && (
           <a
             href={live}

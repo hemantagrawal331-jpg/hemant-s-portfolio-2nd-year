@@ -15,6 +15,7 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { ProjectSection } from "@/components/ProjectSection";
 import { Resume } from "@/components/Resume";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { Skills } from "@/components/Skills";
 import { SmoothScroll } from "@/lib/SmoothScroll";
@@ -37,12 +38,13 @@ export default function HomePage() {
       <SmoothScroll ready={ready} />
       <CustomCursor />
       <SiteAtmosphere />
+      <ScrollProgress />
       <a href="#content" className="skip-link">
         Skip to content
       </a>
       <Navbar />
       <main id="content">
-        <Hero />
+        <Hero ready={ready} />
         <About />
         <Experience />
         <Skills />

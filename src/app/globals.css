@@ -14,24 +14,24 @@
   --invert: #111111;
   --invert-fg: #ffffff;
   --grid: rgba(255, 255, 255, 0.028);
-  --accent: #5eead4;
-  --accent-dim: rgba(94, 234, 212, 0.12);
+  --accent: #4ade80;
+  --accent-dim: rgba(74, 222, 128, 0.12);
   --glass: rgba(12, 12, 16, 0.55);
 }
 
 [data-theme="light"] {
-  --paper: #eef0f3;
+  --paper: #f3f3f0;
   --hero-fg: #111111;
-  --bg: #f4f5f7;
+  --bg: #f6f6f3;
   --elevated: #ffffff;
   --fg: #141416;
   --muted: #5c5c66;
   --line: rgba(17, 17, 17, 0.08);
   --invert: #111111;
   --invert-fg: #ffffff;
-  --grid: rgba(17, 17, 17, 0.035);
-  --accent: #0f766e;
-  --accent-dim: rgba(15, 118, 110, 0.08);
+  --grid: rgba(17, 17, 17, 0.04);
+  --accent: #16a34a;
+  --accent-dim: rgba(22, 163, 74, 0.08);
   --glass: rgba(255, 255, 255, 0.62);
 }
 
@@ -185,7 +185,7 @@ textarea:focus-visible {
 }
 
 .card-interactive:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
@@ -228,6 +228,22 @@ textarea:focus-visible {
   animation: grid-shift 40s linear infinite;
 }
 
+.grain {
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+.orbit-spin {
+  transform-origin: 180px 150px;
+  animation: orbit-spin 28s linear infinite;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes grid-shift {
   from {
     background-position: 0 0;
@@ -256,13 +272,26 @@ textarea:focus-visible {
   }
 }
 
-.portrait-fade {
-  mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 78%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 78%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
-  -webkit-mask-composite: source-in;
+.portrait-3d {
+  perspective: 900px;
+  transform-style: preserve-3d;
+}
+
+.portrait-3d img {
+  transform: perspective(900px) rotateY(-10deg) rotateX(4deg);
+  filter: drop-shadow(18px 22px 28px rgba(0, 0, 0, 0.28));
+}
+
+.portrait-ground {
+  position: absolute;
+  left: 50%;
+  bottom: 1.2%;
+  z-index: 0;
+  width: 62%;
+  height: 22px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.3), transparent 72%);
+  filter: blur(3px);
 }
 
 .timeline-line {

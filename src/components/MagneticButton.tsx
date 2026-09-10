@@ -7,6 +7,11 @@ type Props = {
   children: ReactNode;
   className?: string;
   href?: string;
+  download?: string;
+  target?: string;
+  rel?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
   onClick?: () => void;
   strength?: number;
 };
@@ -15,8 +20,13 @@ export function MagneticButton({
   children,
   className = "",
   href,
+  download,
+  target,
+  rel,
+  type = "button",
+  disabled,
   onClick,
-  strength = 18,
+  strength = 10,
 }: Props) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -43,6 +53,9 @@ export function MagneticButton({
       <motion.a
         ref={linkRef}
         href={href}
+        download={download}
+        target={target}
+        rel={rel}
         onClick={onClick}
         className={className}
         onMouseMove={onMove}
@@ -58,7 +71,8 @@ export function MagneticButton({
   return (
     <motion.button
       ref={buttonRef}
-      type="button"
+      type={type}
+      disabled={disabled}
       onClick={onClick}
       className={className}
       onMouseMove={onMove}

@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
+import { MagneticButton } from "./MagneticButton";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -26,13 +27,16 @@ export function Contact() {
 
   return (
     <section id="contact" className="section bg-bg">
-      <div className="stage grid items-start gap-10 lg:grid-cols-[1fr_1fr]">
+      <div className="stage grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p className="label mb-4">{"// CONTACT"}</p>
-          <h2 className="heading max-w-xl text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
-            {portfolioData.contact.heading}
+          <p className="label mb-5">{"// CONTACT"}</p>
+          <h2 className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
+            LET&apos;S BUILD
+            <span className="block">SOMETHING</span>
+            <span className="block">USEFUL.</span>
           </h2>
-          <p className="mt-6 max-w-md text-muted">{portfolioData.contact.text}</p>
+          <p className="mt-6 max-w-md text-lg text-muted">Have an idea? Let&apos;s talk.</p>
+          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{portfolioData.contact.text}</p>
           <div className="mt-6 flex flex-col gap-1">
             <a href={email} className="text-fg" data-cursor="link">
               {portfolioData.social.email}
@@ -52,37 +56,34 @@ export function Contact() {
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             {linkedin && (
-              <a
+              <MagneticButton
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
-                data-cursor="link"
               >
                 LinkedIn <span className="arrow">↗</span>
-              </a>
+              </MagneticButton>
             )}
             {github && (
-              <a
+              <MagneticButton
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
-                data-cursor="link"
               >
                 GitHub <span className="arrow">↗</span>
-              </a>
+              </MagneticButton>
             )}
             {instagram && (
-              <a
+              <MagneticButton
                 href={instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
-                data-cursor="link"
               >
                 Instagram <span className="arrow">↗</span>
-              </a>
+              </MagneticButton>
             )}
           </div>
         </div>
@@ -115,14 +116,13 @@ export function Contact() {
               className="min-h-32 rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
             />
           </label>
-          <button
+          <MagneticButton
             type="submit"
             disabled={!email}
             className="w-full rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40 sm:w-auto"
-            data-cursor="link"
           >
             {!email ? "ADD YOUR_EMAIL TO ENABLE" : sent ? "OPENING EMAIL" : "SEND MESSAGE ↗"}
-          </button>
+          </MagneticButton>
         </form>
       </div>
     </section>

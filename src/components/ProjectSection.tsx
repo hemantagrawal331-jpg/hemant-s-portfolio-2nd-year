@@ -26,7 +26,7 @@ export function ProjectSection() {
   return (
     <section id="work" className="section bg-bg">
       <div className="stage">
-        <p className="label mb-4">{"// PROJECTS"}</p>
+        <p className="label mb-4">{"// PROJECTS · BUILD"}</p>
         <h2 className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
           Featured Projects
         </h2>

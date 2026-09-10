@@ -1,13 +1,33 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import { motion, useReducedMotion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
+import { useRef } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
+import { usePointerParallax } from "@/lib/usePointerParallax";
 import { EmphasisText } from "./EmphasisText";
 import { HeroNetwork } from "./HeroNetwork";
+import { MagneticButton } from "./MagneticButton";
 
-export function Hero() {
+gsap.registerPlugin(ScrollTrigger);
+
+const HEADLINES = [
+  ["I BUILD", "INTELLIGENT", "SYSTEMS."],
+  ["AUTOMATE QUALITY."],
+  ["SOLVE REAL", "PROBLEMS."],
+];
+
+export function Hero({ ready }: { ready: boolean }) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduce = useReducedMotion();
+  const grid = usePointerParallax(6);
+  const network = usePointerParallax(10);
+  const text = usePointerParallax(4);
+
   const socials = [
     { href: hrefFor(portfolioData.social.github), label: "GitHub", icon: Github },
     { href: hrefFor(portfolioData.social.linkedin), label: "LinkedIn", icon: Linkedin },
@@ -15,78 +35,131 @@ export function Hero() {
     { href: hrefFor(portfolioData.social.email, "email"), label: "Email", icon: Mail },
   ];
 
-  return (
-    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-paper text-hero-fg">
-      <div className="tech-grid tech-grid-shift pointer-events-none absolute inset-0 opacity-60" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.5),transparent_58%)]" />
+  useGSAP(
+    () => {
+      if (!ready || reduce || !sectionRef.current) return;
+      gsap.to(sectionRef.current, {
+        opacity: 0.28,
+        y: -36,
+        scale: 0.985,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    },
+    { dependencies: [ready, reduce] },
+  );
 
-      <div className="stage relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-8 pt-8 lg:min-h-[calc(100svh-4.5rem)] lg:justify-center lg:pb-0">
-        <div className="relative z-10 flex flex-col gap-8 lg:grid lg:grid-cols-[1.15fr_0.55fr_1fr] lg:items-center">
-          <div className="max-w-2xl">
-            <p className="mb-4 text-[11px] tracking-[0.16em] text-ink/45">
+  const show = ready || reduce;
+
+  return (
+    <section
+      ref={sectionRef}
+      id="top"
+      className="relative min-h-[100svh] overflow-hidden bg-paper text-hero-fg"
+    >
+      <motion.div
+        className="tech-grid pointer-events-none absolute inset-0 opacity-50"
+        style={{ x: grid.x, y: grid.y }}
+      />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_32%,rgba(255,255,255,0.42),transparent_58%)]" />
+
+      <div className="stage relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-8 pt-10 lg:min-h-[calc(100svh-4.5rem)] lg:justify-center lg:pb-0">
+        <div className="relative z-10 flex flex-col gap-10 lg:grid lg:grid-cols-[1.15fr_0.7fr_0.95fr] lg:items-center">
+          <motion.div className="max-w-2xl" style={{ x: text.x, y: text.y }}>
+            <p className="mb-5 text-[11px] tracking-[0.18em] text-ink/42">
               {portfolioData.personal.eyebrow}
             </p>
-            <h1 className="display w-full text-[clamp(1.85rem,4.4vw,3.35rem)] leading-[0.98] text-ink">
-              {portfolioData.personal.heroHeadline.map((line) => (
-                <span key={line} className="block">
-                  {line}
+            <h1 className="display w-full text-[clamp(2.05rem,5vw,4.15rem)] text-ink">
+              {HEADLINES.map((block, blockIndex) => (
+                <span key={block.join(" ")} className={blockIndex > 0 ? "mt-3 block" : "block"}>
+                  {block.map((line, lineIndex) => (
+                    <span key={line} className="block overflow-hidden">
+                      <motion.span
+                        className="block"
+                        initial={reduce ? false : { y: "110%" }}
+                        animate={show ? { y: "0%" } : { y: "110%" }}
+                        transition={{
+                          duration: 0.85,
+                          delay: 0.08 + blockIndex * 0.22 + lineIndex * 0.07,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                      >
+                        {line}
+                      </motion.span>
+                    </span>
+                  ))}
                 </span>
               ))}
             </h1>
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink/65 md:text-base">
+            <motion.p
+              className="mt-6 max-w-xl text-sm leading-relaxed text-ink/62 md:text-base"
+              initial={reduce ? false : { opacity: 0, y: 16 }}
+              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.6, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
+            >
               <EmphasisText text={portfolioData.personal.heroDescription} strongClassName="font-medium text-ink" />
-            </p>
-            <div className="mt-5 flex max-w-xl flex-wrap gap-2">
+            </motion.p>
+            <motion.div
+              className="mt-5 flex max-w-xl flex-wrap gap-2"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.55, delay: 0.82 }}
+            >
               {portfolioData.personal.heroStack.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-ink/10 px-3 py-1 text-[11px] tracking-[0.04em] text-ink/60"
+                  className="rounded-full border border-ink/10 px-3 py-1 text-[11px] tracking-[0.04em] text-ink/58"
                 >
                   {item}
                 </span>
               ))}
-            </div>
-            <p className="mt-5 font-display text-lg tracking-tight text-ink/80 md:text-xl">
+            </motion.div>
+            <p className="mt-6 font-display text-lg tracking-tight text-ink/78 md:text-xl">
               {portfolioData.personal.heroMotto}
             </p>
-          </div>
+          </motion.div>
 
-          <div className="relative mx-auto w-[min(420px,78vw)] lg:hidden">
+          <motion.div
+            className="relative mx-auto h-[min(46vh,360px)] w-auto lg:hidden"
+            initial={reduce ? false : { opacity: 0, y: 24 }}
+            animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
             <Portrait />
-          </div>
+          </motion.div>
 
           <div className="hidden lg:block" />
 
-          <div className="relative z-10 max-w-sm lg:ml-auto lg:text-right">
-            <div>
-              <HeroNetwork />
-              <p className="mt-1 text-center font-mono text-[10px] tracking-[0.16em] text-ink/35 lg:text-right">
-                AI / ML → AUTOMATION → SOFTWARE QUALITY
-              </p>
-            </div>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <a
+          <motion.div className="relative z-10 max-w-sm lg:ml-auto lg:text-right" style={{ x: network.x, y: network.y }}>
+            <HeroNetwork />
+            <p className="mt-1 text-center font-mono text-[10px] tracking-[0.16em] text-ink/32 lg:text-right">
+              AI / ML → AUTOMATION → SOFTWARE QUALITY
+            </p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">
+              <MagneticButton
                 href="#work"
                 className="btn-line rounded-full bg-ink px-5 py-3 text-[12px] text-white"
-                data-cursor="link"
               >
                 View My Work <span className="arrow">↗</span>
-              </a>
-              <a
+              </MagneticButton>
+              <MagneticButton
                 href={portfolioData.social.resume}
                 download="Hemant_Agrawal_Resume.docx"
                 className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
-                data-cursor="link"
               >
-                Download Resume
-              </a>
-              <a
+                Download Resume <span className="arrow">↗</span>
+              </MagneticButton>
+              <MagneticButton
                 href="#contact"
                 className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
-                data-cursor="link"
               >
                 Contact Me
-              </a>
+              </MagneticButton>
             </div>
             <div className="mt-5 flex gap-3 lg:justify-end">
               {socials.map(({ href, label, icon: Icon }) =>
@@ -113,22 +186,24 @@ export function Hero() {
                 ),
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      <motion.div
-        className="pointer-events-none absolute bottom-0 left-1/2 hidden w-[min(640px,48vw)] -translate-x-1/2 lg:block"
-        initial={{ opacity: 0.75, scale: 1.04, x: "-50%" }}
-        animate={{ opacity: 1, scale: 1, x: "-50%" }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <Portrait />
-      </motion.div>
+      <div className="pointer-events-none absolute bottom-0 left-1/2 hidden h-[min(68vh,580px)] -translate-x-1/2 lg:block">
+        <motion.div
+          className="h-full origin-bottom"
+          initial={reduce ? false : { opacity: 0, y: 36 }}
+          animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
+          transition={{ duration: 1.05, delay: 0.18, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Portrait />
+        </motion.div>
+      </div>
 
       <a
         href="#about"
-        className="absolute bottom-5 left-[max(14px,calc((100%-1320px)/2+20px))] z-10 text-[11px] tracking-[0.18em] text-ink/40"
+        className="absolute bottom-5 left-[max(14px,calc((100%-1320px)/2+20px))] z-10 text-[11px] tracking-[0.18em] text-ink/38"
         data-cursor="link"
       >
         SCROLL TO DISCOVER
@@ -139,14 +214,15 @@ export function Hero() {
 
 function Portrait() {
   return (
-    <div className="portrait-fade">
+    <div className="portrait-3d relative mx-auto h-full w-auto">
+      <span className="portrait-ground" aria-hidden />
       <Image
         src="/images/hero-portrait.png"
         alt={`${portfolioData.personal.name} portrait`}
-        width={980}
-        height={1220}
+        width={222}
+        height={347}
         priority
-        className="h-auto w-full object-contain object-bottom"
+        className="relative z-10 h-full w-auto object-contain object-bottom"
       />
     </div>
   );

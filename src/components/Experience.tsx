@@ -12,7 +12,7 @@ export function Experience() {
     <section id="experience" className="section bg-bg">
       <div className="stage">
         <Reveal>
-          <SectionHeading kicker="// EXPERIENCE" title="Experience" />
+          <SectionHeading kicker="// EXPERIENCE · 02 AUTOMATE" title="Experience" />
         </Reveal>
         <Reveal className="relative mt-12 pl-6 md:pl-10">
           <motion.span
@@ -26,8 +26,8 @@ export function Experience() {
           <article className="card card-interactive p-6 md:p-10">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="text-[12px] tracking-[0.16em] text-muted">{job.status}</p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-fg md:text-3xl">{job.role}</h3>
+                <p className="font-mono text-[12px] tracking-[0.18em] text-muted">01 / {job.status}</p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-fg md:text-4xl">{job.role}</h3>
                 <p className="mt-2 text-lg text-fg/80">{job.company}</p>
               </div>
               <p className="font-mono text-[11px] tracking-[0.14em] text-muted">QA / SDET</p>

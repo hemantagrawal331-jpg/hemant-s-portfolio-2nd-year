@@ -6,14 +6,21 @@ import { EmphasisText } from "./EmphasisText";
 import { Reveal } from "./Reveal";
 
 export function About() {
+  const [lead, ...rest] = portfolioData.personal.about.paragraphs;
+
   return (
-    <section id="about" className="section bg-bg">
-      <div className="stage">
+    <section id="about" className="section relative overflow-hidden bg-bg">
+      <div className="stage relative">
         <Reveal>
-          <p className="label mb-4">{"// ABOUT"}</p>
-          <h2 className="mb-10 max-w-2xl font-display text-2xl tracking-tight text-fg md:text-3xl">
-            {portfolioData.personal.about.heading}
-          </h2>
+          <div className="mb-10 flex items-end justify-between gap-6">
+            <div>
+              <p className="label mb-4">{"// ABOUT"}</p>
+              <h2 className="max-w-2xl font-display text-2xl font-medium tracking-tight text-fg md:text-3xl">
+                {portfolioData.personal.about.heading}
+              </h2>
+            </div>
+            <p className="hidden font-mono text-[11px] tracking-[0.2em] text-muted md:block">01 — BUILD</p>
+          </div>
         </Reveal>
         <div className="grid items-start gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
           <Reveal>
@@ -33,8 +40,11 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="space-y-4 text-base leading-relaxed text-muted md:text-lg">
-              {portfolioData.personal.about.paragraphs.map((paragraph) => (
+            <div className="space-y-4 text-base font-normal leading-relaxed text-muted md:text-lg">
+              <p>
+                <EmphasisText text={lead} />
+              </p>
+              {rest.map((paragraph) => (
                 <p key={paragraph}>
                   <EmphasisText text={paragraph} />
                 </p>

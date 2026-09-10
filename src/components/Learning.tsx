@@ -9,7 +9,7 @@ export function Learning() {
     <section className="section bg-bg">
       <div className="stage">
         <Reveal>
-          <SectionHeading kicker="// NOW" title="Currently Learning" />
+          <SectionHeading kicker="// NOW · 04 IMPROVE" title="Currently Learning" />
         </Reveal>
         <div className="mt-10 grid gap-4 md:grid-cols-2">
           {portfolioData.learning.map((item, index) => (
