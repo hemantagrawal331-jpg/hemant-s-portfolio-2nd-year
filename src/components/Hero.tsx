@@ -11,6 +11,7 @@ export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const id = window.setInterval(() => {
       setRoleIndex((value) => (value + 1) % portfolioData.personal.rotatingRoles.length);
     }, 2800);
@@ -55,7 +56,7 @@ export function Hero() {
             <p className="mt-5 max-w-lg font-display text-lg tracking-tight text-ink/75 md:text-xl">
               {portfolioData.personal.heroLine}
             </p>
-            <div className="mt-4 flex max-w-lg flex-wrap gap-2">
+            <div className="mt-4 hidden max-w-lg flex-wrap gap-2 sm:flex">
               {portfolioData.personal.traits.map((trait) => (
                 <span key={trait} className="rounded-full border border-ink/10 px-3 py-1 text-[11px] tracking-[0.04em] text-ink/55">
                   {trait}
@@ -110,7 +111,7 @@ export function Hero() {
                     href={href}
                     aria-label={label}
                     target={label === "Email" ? undefined : "_blank"}
-                    rel={label === "Email" ? undefined : "noreferrer"}
+                    rel={label === "Email" ? undefined : "noopener noreferrer"}
                     className="icon-btn flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink"
                     data-cursor="link"
                   >

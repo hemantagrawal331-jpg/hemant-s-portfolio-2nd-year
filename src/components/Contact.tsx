@@ -16,9 +16,10 @@ export function Contact() {
     if (!email) return;
     const data = new FormData(event.currentTarget);
     const subject = encodeURIComponent("Portfolio inquiry");
-    const body = encodeURIComponent(
-      `Name: ${data.get("name")}\nEmail: ${data.get("email")}\n\n${data.get("message")}`,
-    );
+    const name = String(data.get("name") ?? "");
+    const from = String(data.get("email") ?? "");
+    const message = String(data.get("message") ?? "");
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${from}\n\n${message}`);
     window.location.href = `${email}?subject=${subject}&body=${body}`;
     setSent(true);
   };
@@ -54,7 +55,7 @@ export function Contact() {
               <a
                 href={linkedin}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
@@ -65,7 +66,7 @@ export function Contact() {
               <a
                 href={github}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
@@ -76,7 +77,7 @@ export function Contact() {
               <a
                 href={instagram}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
@@ -87,32 +88,40 @@ export function Contact() {
         </div>
 
         <form onSubmit={onSubmit} className="glass grid gap-3 p-6">
-          <input
-            name="name"
-            required
-            placeholder="Name"
-            className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
-          />
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder="Email"
-            className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
-          />
-          <textarea
-            name="message"
-            required
-            placeholder="Message"
-            className="min-h-32 rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
-          />
+          <label className="grid gap-2">
+            <span className="text-[12px] tracking-[0.14em] text-muted">NAME</span>
+            <input
+              name="name"
+              required
+              autoComplete="name"
+              className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+            />
+          </label>
+          <label className="grid gap-2">
+            <span className="text-[12px] tracking-[0.14em] text-muted">EMAIL</span>
+            <input
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+            />
+          </label>
+          <label className="grid gap-2">
+            <span className="text-[12px] tracking-[0.14em] text-muted">MESSAGE</span>
+            <textarea
+              name="message"
+              required
+              className="min-h-32 rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+            />
+          </label>
           <button
             type="submit"
             disabled={!email}
             className="w-full rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40 sm:w-auto"
             data-cursor="link"
           >
-            {email ? (sent ? "OPENING EMAIL" : "SEND MESSAGE ↗") : "ADD YOUR_EMAIL TO ENABLE"}
+            {!email ? "ADD YOUR_EMAIL TO ENABLE" : sent ? "OPENING EMAIL" : "SEND MESSAGE ↗"}
           </button>
         </form>
       </div>

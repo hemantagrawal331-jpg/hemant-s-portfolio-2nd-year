@@ -40,10 +40,11 @@ export function Navbar() {
               className={`font-display text-lg font-semibold tracking-tight ${
                 lightNav ? "text-ink" : "text-fg"
               }`}
+              aria-label="Hemant Agrawal — home"
               data-cursor="link"
               onClick={() => setOpen(false)}
             >
-              {portfolioData.personal.firstName.toLowerCase()}.
+              Hemant
             </a>
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">

@@ -9,19 +9,31 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
+    let frame = 0;
+    let doneTimer = 0;
+    let finished = false;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
       setProgress(100);
-      const done = window.setTimeout(() => {
-        setVisible(false);
-        onComplete();
-      }, 160);
-      return () => window.clearTimeout(done);
+      setVisible(false);
+      onComplete();
+    };
+
+    const failsafe = window.setTimeout(finish, 2200);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      doneTimer = window.setTimeout(finish, 80);
+      return () => {
+        window.clearTimeout(failsafe);
+        window.clearTimeout(doneTimer);
+      };
     }
 
     const started = performance.now();
     const duration = 1400;
-    let frame = 0;
 
     const tick = (now: number) => {
       const t = Math.min(1, (now - started) / duration);
@@ -30,15 +42,16 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       if (t < 1) {
         frame = requestAnimationFrame(tick);
       } else {
-        window.setTimeout(() => {
-          setVisible(false);
-          onComplete();
-        }, 220);
+        doneTimer = window.setTimeout(finish, 180);
       }
     };
 
     frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
+    return () => {
+      window.clearTimeout(failsafe);
+      window.clearTimeout(doneTimer);
+      cancelAnimationFrame(frame);
+    };
   }, [onComplete]);
 
   return (
@@ -46,6 +59,9 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       {visible && (
         <motion.div
           className="fixed inset-0 z-[90] flex items-center justify-center bg-black"
+          role="status"
+          aria-live="polite"
+          aria-label="Loading portfolio"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
         >

@@ -31,7 +31,7 @@ export const portfolioData = {
     location: "India",
     githubRepoName: "attentive_api_automation",
     eyebrow: "Hi, I'm Hemant",
-    rotatingRoles: ["AI / ML STUDENT", "QA AUTOMATION", "SOFTWARE DEVELOPER"],
+    rotatingRoles: ["AI / ML STUDENT", "QA AUTOMATION", "CONTINUOUS LEARNER"],
     heroLine: "I build, automate, test, and continuously learn.",
     heroDescription:
       "Curious, technical, and practical. CSE student specializing in AI & Machine Learning, with hands-on QA Automation and REST API testing. I like solving problems by automating workflows, checking quality carefully, and turning ideas into useful software — then learning what to improve next.",
@@ -208,6 +208,8 @@ export const portfolioData = {
       index: "01",
       name: "AI-Powered Social Media Authenticity & Risk Analysis",
       tag: "AI / ML",
+      summary:
+        "Web app that estimates whether a social media account looks genuine, suspicious, or potentially fake from public signals — a risk-oriented assessment, not a perfect classifier.",
       description:
         "An AI-powered web application designed to estimate whether a social media account appears genuine, suspicious, or potentially fake by combining multiple signals rather than relying on a single metric. The system does not require logging into a social media platform. It analyzes available account-level signals and produces a probability/risk-oriented assessment — realistic and data-driven, not a simple fake/real classifier. Accuracy is not claimed to be perfect.",
       tech: ["AI/ML", "Risk Analysis", "Web App"],
@@ -231,6 +233,8 @@ export const portfolioData = {
       index: "02",
       name: "Attentive API Automation",
       tag: "Attentive.ai Internship",
+      summary:
+        "Major internship project at Attentive.ai: Java REST API automation with Rest Assured, TestNG, and reusable helpers. Company repository — no public GitHub link.",
       description:
         "Major internship project at Attentive.ai. A Java-based API automation framework for REST APIs, with reusable helper classes, structured test cases, authentication handling, response validation, and TestNG assertions. Code was pushed to the company repository, so no public GitHub link is shown.",
       tech: ["Java", "Rest Assured", "TestNG", "Maven", "Git", "JSON", "POJOs"],
@@ -254,6 +258,8 @@ export const portfolioData = {
       index: "03",
       name: "Beam MT API Automation",
       tag: "Attentive.ai Internship",
+      summary:
+        "Internship project at Attentive.ai for Beam MT API workflows — authentication, uploads, status, and end-to-end test flows. Company repository — no public GitHub link.",
       description:
         "Internship project at Attentive.ai covering Beam MT API workflows end to end: authentication, request management, Ops workflows, file uploads, supplementary files, request status, response validation, test dependencies, and TestNG assertions. Code was pushed to the company repository, so no public GitHub link is shown.",
       tech: ["Java", "Rest Assured", "TestNG", "REST APIs", "JSON"],

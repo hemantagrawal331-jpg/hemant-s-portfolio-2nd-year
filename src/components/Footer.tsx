@@ -14,21 +14,21 @@ export function Footer() {
         <p className="text-[12px] tracking-[0.16em] text-muted">{portfolioData.personal.brand.toUpperCase()}</p>
         <div className="flex gap-5 text-[12px] tracking-[0.16em] text-muted">
           {github ? (
-            <a href={github} target="_blank" rel="noreferrer" data-cursor="link">
+            <a href={github} target="_blank" rel="noopener noreferrer" data-cursor="link">
               GITHUB
             </a>
           ) : (
             <span>GITHUB</span>
           )}
           {linkedin ? (
-            <a href={linkedin} target="_blank" rel="noreferrer" data-cursor="link">
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" data-cursor="link">
               LINKEDIN
             </a>
           ) : (
             <span>LINKEDIN</span>
           )}
           {instagram && (
-            <a href={instagram} target="_blank" rel="noreferrer" data-cursor="link">
+            <a href={instagram} target="_blank" rel="noopener noreferrer" data-cursor="link">
               INSTAGRAM
             </a>
           )}

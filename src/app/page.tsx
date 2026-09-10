@@ -21,33 +21,40 @@ import { SmoothScroll } from "@/lib/SmoothScroll";
 
 export default function HomePage() {
   const [ready, setReady] = useState(false);
-  const onComplete = useCallback(() => setReady(true), []);
+  const onComplete = useCallback(() => {
+    setReady(true);
+    const hash = window.location.hash;
+    if (hash) {
+      window.setTimeout(() => {
+        document.querySelector(hash)?.scrollIntoView({ block: "start" });
+      }, 50);
+    }
+  }, []);
 
   return (
     <>
       <LoadingScreen onComplete={onComplete} />
-      {ready && (
-        <>
-          <SmoothScroll ready />
-          <CustomCursor />
-          <SiteAtmosphere />
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Experience />
-            <Skills />
-            <ProjectSection />
-            <Algorithms />
-            <Education />
-            <Learning />
-            <GithubSection />
-            <Resume />
-            <Contact />
-          </main>
-          <Footer />
-        </>
-      )}
+      <SmoothScroll ready={ready} />
+      <CustomCursor />
+      <SiteAtmosphere />
+      <a href="#content" className="skip-link">
+        Skip to content
+      </a>
+      <Navbar />
+      <main id="content">
+        <Hero />
+        <About />
+        <Experience />
+        <Skills />
+        <ProjectSection />
+        <Algorithms />
+        <Education />
+        <Learning />
+        <GithubSection />
+        <Resume />
+        <Contact />
+      </main>
+      <Footer />
     </>
   );
 }

@@ -18,7 +18,7 @@ export function GithubSection() {
         <div className="mt-10 grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
           <Reveal>
             <div className="card p-6 md:p-8">
-              <p className="label mb-6">Activity placeholder</p>
+              <p className="label mb-6">GitHub</p>
               <div className="grid grid-cols-12 gap-1.5 md:grid-cols-[repeat(14,minmax(0,1fr))]">
                 {Array.from({ length: 84 }).map((_, index) => (
                   <div key={index} className="aspect-square rounded-[3px] bg-fg/[0.07]" />
