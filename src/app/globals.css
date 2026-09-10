@@ -1,0 +1,138 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+[data-theme="dark"] {
+  --paper: #e8e8ea;
+  --hero-fg: #111111;
+  --bg: #0b0b0b;
+  --elevated: #141414;
+  --fg: #f4f4f5;
+  --muted: #8a8a96;
+  --line: rgba(255, 255, 255, 0.08);
+  --invert: #111111;
+  --invert-fg: #ffffff;
+  --grid: rgba(255, 255, 255, 0.035);
+}
+
+[data-theme="light"] {
+  --paper: #eef0f3;
+  --hero-fg: #111111;
+  --bg: #f6f6f8;
+  --elevated: #ffffff;
+  --fg: #141416;
+  --muted: #5c5c66;
+  --line: rgba(17, 17, 17, 0.08);
+  --invert: #111111;
+  --invert-fg: #ffffff;
+  --grid: rgba(17, 17, 17, 0.04);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--invert);
+  color: var(--invert-fg);
+}
+
+a,
+button,
+input,
+textarea {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  body,
+  a,
+  button,
+  input,
+  textarea {
+    cursor: auto;
+  }
+}
+
+.stage {
+  width: min(1320px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .stage {
+    width: min(1320px, calc(100% - 28px));
+  }
+}
+
+.display {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--elevated);
+  border-radius: 28px;
+}
+
+.tech-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.portrait-fade {
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 78%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 78%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 12%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
