@@ -49,7 +49,9 @@ export function GithubSection() {
             <Reveal delay={0.1}>
               <div className="card card-interactive p-5">
                 <p className="label">Focus</p>
-                <p className="mt-3 text-fg">Readable tests, reusable helpers, honest results.</p>
+                <p className="mt-3 text-fg">
+                  Curious, practical, automation-minded, and quality-focused — with honest results.
+                </p>
               </div>
             </Reveal>
           </div>

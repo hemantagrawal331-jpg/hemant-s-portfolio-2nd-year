@@ -36,7 +36,7 @@ export function Hero() {
               {portfolioData.personal.eyebrow.toUpperCase()}
             </p>
             <p className="mb-4 text-[11px] tracking-[0.16em] text-ink/40">
-              AI/ML STUDENT · QA AUTOMATION ENGINEER · SOFTWARE DEVELOPER
+              CURIOUS · TECHNICAL · PRACTICAL · QUALITY-FOCUSED
             </p>
             <div className="relative min-h-[2.4em] overflow-visible">
               <AnimatePresence mode="wait">
@@ -52,7 +52,16 @@ export function Hero() {
                 </motion.h1>
               </AnimatePresence>
             </div>
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-ink/55">{portfolioData.personal.heroLine}</p>
+            <p className="mt-5 max-w-lg font-display text-lg tracking-tight text-ink/75 md:text-xl">
+              {portfolioData.personal.heroLine}
+            </p>
+            <div className="mt-4 flex max-w-lg flex-wrap gap-2">
+              {portfolioData.personal.traits.map((trait) => (
+                <span key={trait} className="rounded-full border border-ink/10 px-3 py-1 text-[11px] tracking-[0.04em] text-ink/55">
+                  {trait}
+                </span>
+              ))}
+            </div>
           </div>
 
           <div className="relative mx-auto w-[min(420px,78vw)] lg:hidden">

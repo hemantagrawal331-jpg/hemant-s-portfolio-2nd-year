@@ -14,6 +14,16 @@ export const portfolioData = {
     positioning:
       "Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG, Rest Assured, Maven, Git, and Postman. Interested in building reliable software, automating repetitive processes, finding bugs, and developing intelligent software solutions.",
     brand: "I build, automate, test, and continuously learn.",
+    traits: [
+      "Curious",
+      "Technical",
+      "Practical",
+      "Problem Solver",
+      "Automation-minded",
+      "AI/ML enthusiast",
+      "Quality-focused",
+      "Continuous learner",
+    ],
     year: "Second Year",
     educationDegree: "Bachelor of Technology / Engineering in Computer Science Engineering",
     specialization: "Artificial Intelligence & Machine Learning",
@@ -22,17 +32,26 @@ export const portfolioData = {
     githubRepoName: "attentive_api_automation",
     eyebrow: "Hi, I'm Hemant",
     rotatingRoles: ["AI / ML STUDENT", "QA AUTOMATION", "SOFTWARE DEVELOPER"],
-    heroLine: "Building Intelligent Software. Automating Quality. Solving Real Problems.",
+    heroLine: "I build, automate, test, and continuously learn.",
     heroDescription:
-      "Computer Science Engineering student specializing in AI & Machine Learning, with hands-on experience in QA Automation and REST API testing. I enjoy building reliable systems, automating workflows, analyzing problems, and turning ideas into practical software.",
-    aboutPills: ["AI & ML", "QA Automation", "Software Quality"],
+      "Curious, technical, and practical. CSE student specializing in AI & Machine Learning, with hands-on QA Automation and REST API testing. I like solving problems by automating workflows, checking quality carefully, and turning ideas into useful software — then learning what to improve next.",
+    aboutPills: [
+      "Curious",
+      "Technical",
+      "Practical",
+      "Problem Solver",
+      "Automation-minded",
+      "AI/ML enthusiast",
+      "Quality-focused",
+      "Continuous learner",
+    ],
     about: {
       intro:
         "Hemant Agrawal is a second-year Computer Science Engineering student specializing in Artificial Intelligence & Machine Learning at the University of Delhi.",
       experience:
-        "He has practical industry experience in QA Automation, particularly in REST API automation and software testing. He enjoys identifying bugs, understanding how systems work, automating repetitive testing processes, and improving overall software quality.",
+        "He is automation-minded and quality-focused, with practical internship experience in QA Automation and REST API testing. He enjoys identifying bugs, understanding how systems work, automating repetitive testing, and solving problems that improve software quality.",
       learning:
-        "Alongside testing and automation, he is actively learning Data Structures & Algorithms, Artificial Intelligence, Machine Learning, backend development, software engineering, and system design fundamentals.",
+        "A continuous learner and AI/ML enthusiast: alongside testing and automation, he is actively studying Data Structures & Algorithms, Artificial Intelligence, Machine Learning, backend development, software engineering, and system design fundamentals.",
       internshipStack: [
         "Java",
         "TestNG",
@@ -52,7 +71,7 @@ export const portfolioData = {
         { label: "Education", value: "CSE — AI & ML" },
         { label: "University", value: "University of Delhi" },
         { label: "Year", value: "Second Year" },
-        { label: "Focus", value: "Quality + Intelligence" },
+        { label: "Focus", value: "Build · Automate · Test · Learn" },
       ],
     },
   },
@@ -311,7 +330,7 @@ export const portfolioData = {
 
   contact: {
     heading: "Let's Build Something Useful",
-    text: "Whether it's software automation, AI-powered applications, testing, or an interesting technical problem, I'm always interested in learning, building, and collaborating.",
+    text: "I build, automate, test, and continuously learn. If you have a useful problem in automation, AI/ML, or software quality, I am interested in building, testing, and figuring it out.",
   },
 } as const;
 
