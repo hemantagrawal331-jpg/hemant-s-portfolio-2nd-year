@@ -14,18 +14,34 @@ const sans = Inter({
   variable: "--font-sans",
 });
 
+const siteUrl = "https://hemant-agrawal-portfolio.vercel.app";
+const title = "Hemant Agrawal | AI/ML Student & QA Automation Engineer";
+const description =
+  "Hemant Agrawal is a Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG and Rest Assured.";
+
 export const metadata: Metadata = {
-  title: "Hemant Agrawal | AI/ML Student & QA Automation Engineer",
-  description:
-    "Hemant Agrawal is a Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG and Rest Assured.",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  applicationName: "Hemant Agrawal",
+  authors: [{ name: "Hemant Agrawal", url: siteUrl }],
+  creator: "Hemant Agrawal",
   icons: { icon: "/favicon.svg" },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Hemant Agrawal | AI/ML Student & QA Automation Engineer",
-    description:
-      "Hemant Agrawal is a Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG and Rest Assured.",
+    title,
+    description,
     type: "website",
     locale: "en_IN",
+    url: "/",
+    siteName: "Hemant Agrawal",
   },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
+  robots: { index: true, follow: true },
 };
 
 const themeInit = `
