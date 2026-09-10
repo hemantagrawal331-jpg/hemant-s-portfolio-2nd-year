@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { hrefFor, isPlaceholder, portfolioData, type Project } from "@/data/portfolioData";
 import { ProjectCard } from "./ProjectCard";
@@ -66,6 +67,17 @@ export function ProjectSection() {
                   <X className="h-5 w-5" />
                 </button>
               </div>
+              {active.image && (
+                <div className="mb-8 overflow-hidden rounded-[24px] border border-line">
+                  <Image
+                    src={active.image}
+                    alt={`${active.company || active.name} visual`}
+                    width={1600}
+                    height={900}
+                    className="h-auto w-full object-cover"
+                  />
+                </div>
+              )}
               <p className="max-w-3xl text-lg leading-relaxed text-muted">{active.description}</p>
               <div className="mt-10 grid gap-3 md:grid-cols-2">
                 {active.highlights.map((item) => (

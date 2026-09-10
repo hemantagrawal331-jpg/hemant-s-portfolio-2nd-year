@@ -6,10 +6,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Github, Instagram, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
 import { usePointerParallax } from "@/lib/usePointerParallax";
-import { EmphasisText } from "./EmphasisText";
 import { HeroNetwork } from "./HeroNetwork";
 import { MagneticButton } from "./MagneticButton";
 
@@ -55,6 +54,16 @@ export function Hero({ ready }: { ready: boolean }) {
   );
 
   const show = ready || reduce;
+  const roles = portfolioData.personal.rotatingRoles;
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    if (reduce || roles.length < 2) return;
+    const timer = window.setInterval(() => {
+      setRoleIndex((current) => (current + 1) % roles.length);
+    }, 2200);
+    return () => window.clearInterval(timer);
+  }, [reduce, roles.length]);
 
   return (
     <section
@@ -71,8 +80,19 @@ export function Hero({ ready }: { ready: boolean }) {
       <div className="stage relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-8 pt-10 lg:min-h-[calc(100svh-4.5rem)] lg:justify-center lg:pb-0">
         <div className="relative z-10 flex flex-col gap-10 lg:grid lg:grid-cols-[1.15fr_0.7fr_0.95fr] lg:items-center">
           <motion.div className="max-w-2xl" style={{ x: text.x, y: text.y }}>
-            <p className="mb-5 text-[11px] tracking-[0.18em] text-ink/42">
+            <p className="mb-3 text-[13px] tracking-[0.08em] text-ink/50">
               {portfolioData.personal.eyebrow}
+            </p>
+            <p className="mb-5 h-5 overflow-hidden font-mono text-[11px] tracking-[0.18em] text-ink/55">
+              <motion.span
+                key={roles[roleIndex]}
+                className="block"
+                initial={reduce ? false : { y: 12, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {roles[roleIndex]}
+              </motion.span>
             </p>
             <h1 className="display w-full text-[clamp(2.05rem,5vw,4.15rem)] text-ink">
               {HEADLINES.map((block, blockIndex) => (
@@ -96,32 +116,17 @@ export function Hero({ ready }: { ready: boolean }) {
                 </span>
               ))}
             </h1>
+            <p className="mt-5 font-display text-lg tracking-tight text-ink/78 md:text-xl">
+              {portfolioData.personal.heroLine}
+            </p>
             <motion.p
-              className="mt-6 max-w-xl text-sm leading-relaxed text-ink/62 md:text-base"
+              className="mt-4 max-w-xl text-sm leading-relaxed text-ink/62 md:text-base"
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 0.6, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
             >
-              <EmphasisText text={portfolioData.personal.heroDescription} strongClassName="font-medium text-ink" />
+              {portfolioData.personal.heroDescription}
             </motion.p>
-            <motion.div
-              className="mt-5 flex max-w-xl flex-wrap gap-2"
-              initial={reduce ? false : { opacity: 0, y: 12 }}
-              animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-              transition={{ duration: 0.55, delay: 0.82 }}
-            >
-              {portfolioData.personal.heroStack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-ink/10 px-3 py-1 text-[11px] tracking-[0.04em] text-ink/58"
-                >
-                  {item}
-                </span>
-              ))}
-            </motion.div>
-            <p className="mt-6 font-display text-lg tracking-tight text-ink/78 md:text-xl">
-              {portfolioData.personal.heroMotto}
-            </p>
           </motion.div>
 
           <motion.div
@@ -201,13 +206,6 @@ export function Hero({ ready }: { ready: boolean }) {
         </motion.div>
       </div>
 
-      <a
-        href="#about"
-        className="absolute bottom-5 left-[max(14px,calc((100%-1320px)/2+20px))] z-10 text-[11px] tracking-[0.18em] text-ink/38"
-        data-cursor="link"
-      >
-        SCROLL TO DISCOVER
-      </a>
     </section>
   );
 }

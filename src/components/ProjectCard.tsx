@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { hrefFor, isPlaceholder, type Project } from "@/data/portfolioData";
 
 export function ProjectCard({
@@ -28,8 +29,20 @@ export function ProjectCard({
             VIEW ↗
           </span>
         </div>
-        <div className="visual-panel mb-6 h-28 overflow-hidden rounded-2xl border border-line bg-[linear-gradient(135deg,var(--accent-dim),transparent_62%)]">
-          <div className="h-full w-full origin-center transition-transform duration-700 ease-cinematic group-hover:scale-110" />
+        <div className="visual-panel mb-6 h-40 overflow-hidden rounded-2xl border border-line bg-[#111318]">
+          {project.image ? (
+            <Image
+              src={project.image}
+              alt={`${project.company || project.name} visual`}
+              width={1400}
+              height={600}
+              className={`h-full w-full object-center transition-transform duration-700 ease-cinematic group-hover:scale-[1.04] ${
+                project.imageFit === "contain" ? "object-contain" : "object-cover"
+              }`}
+            />
+          ) : (
+            <div className="h-full w-full bg-[linear-gradient(135deg,var(--accent-dim),transparent_62%)]" />
+          )}
         </div>
         <h3 className="font-display text-2xl font-semibold tracking-tight text-fg transition-transform duration-500 group-hover:-translate-y-1 md:text-3xl">
           {project.name}

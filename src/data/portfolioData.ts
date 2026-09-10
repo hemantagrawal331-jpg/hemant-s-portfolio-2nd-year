@@ -30,14 +30,21 @@ export const portfolioData = {
     university: "University of Delhi",
     location: "India",
     githubRepoName: "attentive_api_automation",
-    eyebrow: "CSE STUDENT · AI/ML · SOFTWARE ENGINEERING · QA AUTOMATION",
+    eyebrow: "Hi, I'm Hemant",
+    rotatingRoles: [
+      "AI / ML STUDENT",
+      "SOFTWARE DEVELOPER",
+      "QA AUTOMATION",
+      "CONTINUOUS LEARNER",
+    ],
+    heroLine: "I build, automate, test, and continuously learn.",
     heroHeadline: [
       "I Build Intelligent Systems.",
       "Automate Quality.",
       "Solve Real Problems.",
     ],
     heroDescription:
-      "Second-year **Computer Science Engineering** student specializing in **AI & Machine Learning at the University of Delhi**, with practical industry experience in **QA Automation and REST API testing**.",
+      "Curious, technical, and practical. CSE student specializing in AI & Machine Learning, with hands-on QA Automation and REST API testing. I like solving problems by automating workflows, checking quality carefully, and turning ideas into useful software — then learning what to improve next.",
     heroStack: ["Java", "AI/ML", "Rest Assured", "TestNG", "REST APIs", "DSA", "SQL", "Git"],
     heroMotto: "Build. Automate. Test. Improve.",
     loaderLine: "BUILD → AUTOMATE → TEST → IMPROVE",
@@ -233,6 +240,8 @@ export const portfolioData = {
       tech: ["AI/ML", "Risk Analysis", "Web App"],
       live: "https://ai-powered-social-media-authenticit-beta.vercel.app/",
       github: "https://github.com/hemantagrawal331-jpg/AI-powered-social-media-authenticity-and-risk-analysis",
+      image: "/images/fakeguard-card.png",
+      imageFit: "contain",
       company: "",
       companyRepo: false,
       highlights: [
@@ -258,6 +267,8 @@ export const portfolioData = {
       tech: ["Java", "Rest Assured", "TestNG", "Maven", "Git", "JSON", "POJOs"],
       live: "",
       github: "",
+      image: "/images/attentive-office.png",
+      imageFit: "cover",
       company: "Attentive.ai",
       companyRepo: true,
       highlights: [
@@ -283,6 +294,8 @@ export const portfolioData = {
       tech: ["Java", "Rest Assured", "TestNG", "REST APIs", "JSON"],
       live: "",
       github: "",
+      image: "/images/attentive-office.png",
+      imageFit: "cover",
       company: "Attentive.ai",
       companyRepo: true,
       highlights: [
