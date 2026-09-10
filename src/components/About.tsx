@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
+import { EmphasisText } from "./EmphasisText";
 import { Reveal } from "./Reveal";
 
 export function About() {
@@ -10,9 +11,9 @@ export function About() {
       <div className="stage">
         <Reveal>
           <p className="label mb-4">{"// ABOUT"}</p>
-          <p className="mb-10 max-w-2xl font-display text-2xl tracking-tight text-fg md:text-3xl">
-            {portfolioData.personal.brand}
-          </p>
+          <h2 className="mb-10 max-w-2xl font-display text-2xl tracking-tight text-fg md:text-3xl">
+            {portfolioData.personal.about.heading}
+          </h2>
         </Reveal>
         <div className="grid items-start gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
           <Reveal>
@@ -32,15 +33,18 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="text-muted">Hello, I&apos;m</p>
-            <h2 className="heading mt-2 text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
-              {portfolioData.personal.name}
-            </h2>
-            <p className="mt-3 text-sm text-muted">{portfolioData.personal.title}</p>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted md:text-lg">
-              <p>{portfolioData.personal.about.intro}</p>
-              <p>{portfolioData.personal.about.experience}</p>
-              <p>{portfolioData.personal.about.learning}</p>
+            <div className="space-y-4 text-base leading-relaxed text-muted md:text-lg">
+              {portfolioData.personal.about.paragraphs.map((paragraph) => (
+                <p key={paragraph}>
+                  <EmphasisText text={paragraph} />
+                </p>
+              ))}
+            </div>
+            <div className="mt-8">
+              <p className="label mb-3">{portfolioData.personal.about.approachLabel}</p>
+              <p className="font-display text-lg tracking-tight text-fg md:text-xl">
+                {portfolioData.personal.about.approach}
+              </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
               {portfolioData.personal.aboutPills.map((pill) => (

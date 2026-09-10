@@ -13,7 +13,7 @@ export const portfolioData = {
     title: "Computer Science Engineering Student | AI & Machine Learning",
     positioning:
       "Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG, Rest Assured, Maven, Git, and Postman. Interested in building reliable software, automating repetitive processes, finding bugs, and developing intelligent software solutions.",
-    brand: "I build, automate, test, and continuously learn.",
+    brand: "Build. Automate. Test. Improve.",
     traits: [
       "Curious",
       "Technical",
@@ -30,16 +30,16 @@ export const portfolioData = {
     university: "University of Delhi",
     location: "India",
     githubRepoName: "attentive_api_automation",
-    eyebrow: "Hi, I'm Hemant",
-    rotatingRoles: [
-      "AI / ML STUDENT",
-      "SOFTWARE DEVELOPER",
-      "QA AUTOMATION",
-      "CONTINUOUS LEARNER",
+    eyebrow: "AI / ML STUDENT · SOFTWARE ENGINEERING · QA AUTOMATION",
+    heroHeadline: [
+      "I Build Intelligent Systems.",
+      "Automate Quality.",
+      "Solve Real Problems.",
     ],
-    heroLine: "I build, automate, test, and continuously learn.",
     heroDescription:
-      "Curious, technical, and practical. CSE student specializing in AI & Machine Learning, with hands-on QA Automation and REST API testing. I like solving problems by automating workflows, checking quality carefully, and turning ideas into useful software — then learning what to improve next.",
+      "Computer Science Engineering student specializing in **AI & Machine Learning at the University of Delhi**, with hands-on industry experience in **QA Automation and REST API engineering**.",
+    heroStack: ["Java", "AI/ML", "Rest Assured", "TestNG", "REST APIs", "DSA", "SQL", "Git"],
+    heroMotto: "Build. Automate. Test. Improve.",
     aboutPills: [
       "Curious",
       "Technical",
@@ -51,12 +51,17 @@ export const portfolioData = {
       "Continuous learner",
     ],
     about: {
-      intro:
-        "Hemant Agrawal is a second-year Computer Science Engineering student specializing in Artificial Intelligence & Machine Learning at the University of Delhi.",
-      experience:
-        "He is automation-minded and quality-focused, with practical internship experience in QA Automation and REST API testing. He enjoys identifying bugs, understanding how systems work, automating repetitive testing, and solving problems that improve software quality.",
-      learning:
-        "A continuous learner and AI/ML enthusiast: alongside testing and automation, he is actively studying Data Structures & Algorithms, Artificial Intelligence, Machine Learning, backend development, software engineering, and system design fundamentals.",
+      heading: "About Me",
+      paragraphs: [
+        "I'm **Hemant Agrawal**, a Computer Science Engineering student specializing in **Artificial Intelligence & Machine Learning at the University of Delhi**.",
+        "My engineering journey sits at the intersection of **AI/ML, software engineering, and quality automation**.",
+        "I've gained hands-on industry experience in **QA Automation and REST API testing**, working with Java, Rest Assured, TestNG, Maven, Git, Postman, JSON, and SQL.",
+        "I enjoy understanding how systems work, automating repetitive workflows, challenging software with meaningful test cases, and building practical solutions to real-world problems.",
+        "Currently, I'm strengthening my foundation in **Data Structures & Algorithms, AI/ML, backend engineering, and software architecture**.",
+      ],
+      approachLabel: "My approach",
+      approach:
+        "Think deeply → Build practically → Automate intelligently → Test relentlessly → Improve continuously",
       internshipStack: [
         "Java",
         "TestNG",
@@ -76,7 +81,7 @@ export const portfolioData = {
         { label: "Education", value: "CSE — AI & ML" },
         { label: "University", value: "University of Delhi" },
         { label: "Year", value: "Second Year" },
-        { label: "Focus", value: "Build · Automate · Test · Learn" },
+        { label: "Focus", value: "Build · Automate · Test · Improve" },
       ],
     },
   },
