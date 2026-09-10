@@ -14,15 +14,20 @@ export function ProjectCard({
 
   return (
     <article
-      className="card flex min-h-[340px] cursor-none flex-col justify-between p-6 transition duration-500 hover:-translate-y-1 hover:border-fg/20"
+      className="group card card-interactive flex min-h-[340px] cursor-none flex-col justify-between p-5 sm:p-6"
       data-cursor="view"
       onClick={() => onOpen(project)}
     >
       <div>
-        <p className="text-[12px] tracking-[0.16em] text-muted">
-          {`// PROJECT ${project.index} · ${project.tag}`}
-        </p>
-        <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-fg md:text-3xl">
+        <div className="mb-6 flex items-center gap-2">
+          <span className="h-2 w-2 rounded-full bg-fg/20" />
+          <span className="h-2 w-2 rounded-full bg-fg/20" />
+          <span className="h-2 w-2 rounded-full bg-fg/20" />
+          <p className="ml-2 font-mono text-[11px] tracking-[0.14em] text-muted">
+            {`// PROJECT ${project.index} · ${project.tag}`}
+          </p>
+        </div>
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-fg transition-transform duration-500 group-hover:-translate-y-0.5 md:text-3xl">
           {project.name}
         </h3>
         <p className="mt-4 text-sm leading-relaxed text-muted">{project.description}</p>
@@ -30,12 +35,12 @@ export function ProjectCard({
       <div>
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tech.map((item) => (
-            <span key={item} className="rounded-full border border-line px-3 py-1 text-[11px] text-muted">
+            <span key={item} className="chip">
               {item}
             </span>
           ))}
         </div>
-        <div className="mt-5 flex flex-wrap gap-3" onClick={(event) => event.stopPropagation()}>
+        <div className="mt-5 flex flex-wrap items-center gap-3" onClick={(event) => event.stopPropagation()}>
           {live && (
             <a href={live} target="_blank" rel="noreferrer" className="text-[12px] text-fg" data-cursor="link">
               LIVE DEMO ↗
@@ -49,6 +54,9 @@ export function ProjectCard({
           {!github && isPlaceholder(project.github) && (
             <span className="text-[12px] text-muted">GITHUB — YOUR_GITHUB_URL</span>
           )}
+          <span className="ml-auto text-[11px] tracking-[0.16em] text-muted transition-transform duration-300 group-hover:translate-x-1">
+            CASE STUDY →
+          </span>
         </div>
       </div>
     </article>

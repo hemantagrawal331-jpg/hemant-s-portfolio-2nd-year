@@ -23,11 +23,11 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative bg-bg py-24 md:py-32">
+    <section id="contact" className="section bg-bg">
       <div className="stage grid items-start gap-10 lg:grid-cols-[1fr_1fr]">
         <div>
           <p className="label mb-4">{"// CONTACT"}</p>
-          <h2 className="font-display max-w-xl text-4xl font-semibold tracking-tight text-fg md:text-6xl">
+          <h2 className="heading max-w-xl text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
             {portfolioData.contact.heading}
           </h2>
           <p className="mt-6 max-w-md text-muted">{portfolioData.contact.text}</p>
@@ -49,10 +49,10 @@ export function Contact() {
                 href={linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-line px-5 py-3 text-[12px] text-fg"
+                className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
-                LinkedIn ↗
+                LinkedIn <span className="arrow">↗</span>
               </a>
             )}
             {github && (
@@ -60,10 +60,10 @@ export function Contact() {
                 href={github}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-line px-5 py-3 text-[12px] text-fg"
+                className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
-                GitHub ↗
+                GitHub <span className="arrow">↗</span>
               </a>
             )}
             {instagram && (
@@ -71,39 +71,39 @@ export function Contact() {
                 href={instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-line px-5 py-3 text-[12px] text-fg"
+                className="btn-line rounded-full border border-line px-5 py-3 text-[12px] text-fg"
                 data-cursor="link"
               >
-                Instagram ↗
+                Instagram <span className="arrow">↗</span>
               </a>
             )}
           </div>
         </div>
 
-        <form onSubmit={onSubmit} className="card grid gap-3 p-6">
+        <form onSubmit={onSubmit} className="glass grid gap-3 p-6">
           <input
             name="name"
             required
             placeholder="Name"
-            className="rounded-2xl border border-line bg-bg px-4 py-4 text-sm text-fg outline-none placeholder:text-muted"
+            className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
           />
           <input
             name="email"
             type="email"
             required
             placeholder="Email"
-            className="rounded-2xl border border-line bg-bg px-4 py-4 text-sm text-fg outline-none placeholder:text-muted"
+            className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
           />
           <textarea
             name="message"
             required
             placeholder="Message"
-            className="min-h-32 rounded-2xl border border-line bg-bg px-4 py-4 text-sm text-fg outline-none placeholder:text-muted"
+            className="min-h-32 rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none placeholder:text-muted focus:border-[var(--accent)]"
           />
           <button
             type="submit"
             disabled={!email}
-            className="rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40"
+            className="w-full rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40 sm:w-auto"
             data-cursor="link"
           >
             {email ? (sent ? "OPENING EMAIL" : "SEND MESSAGE ↗") : "ADD YOUR_EMAIL TO ENABLE"}

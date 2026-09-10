@@ -26,10 +26,10 @@ export function Hero() {
 
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-paper text-hero-fg">
-      <div className="tech-grid pointer-events-none absolute inset-0 opacity-70" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.55),transparent_58%)]" />
+      <div className="tech-grid tech-grid-shift pointer-events-none absolute inset-0 opacity-60" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.5),transparent_58%)]" />
 
-      <div className="stage relative flex min-h-[100svh] flex-col justify-end pb-8 pt-24 lg:justify-center lg:pb-0">
+      <div className="stage relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-8 pt-8 lg:min-h-[calc(100svh-4.5rem)] lg:justify-center lg:pb-0">
         <div className="relative z-10 flex flex-col gap-8 lg:grid lg:grid-cols-[1.05fr_0.7fr_1fr] lg:items-center">
           <div className="max-w-2xl">
             <p className="mb-3 text-[12px] tracking-[0.18em] text-ink/45">
@@ -63,28 +63,31 @@ export function Hero() {
 
           <div className="relative z-10 max-w-sm lg:ml-auto lg:text-right">
             <p className="text-sm leading-relaxed text-ink/55">{portfolioData.heroDescription}</p>
-            <div className="mt-6 hidden lg:block">
+            <div className="mt-5">
               <HeroNetwork />
+              <p className="mt-1 text-center font-mono text-[10px] tracking-[0.16em] text-ink/35 lg:text-right">
+                AI / ML → AUTOMATION → SOFTWARE QUALITY
+              </p>
             </div>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row lg:justify-end">
               <a
                 href="#work"
-                className="inline-flex items-center justify-center rounded-full bg-ink px-5 py-3 text-[12px] text-white"
+                className="btn-line rounded-full bg-ink px-5 py-3 text-[12px] text-white"
                 data-cursor="link"
               >
-                View My Work ↗
+                View My Work <span className="arrow">↗</span>
               </a>
               <a
                 href={portfolioData.resume}
                 download="Hemant_Agrawal_Resume.docx"
-                className="inline-flex items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
+                className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
                 data-cursor="link"
               >
                 Download Resume
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
+                className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
                 data-cursor="link"
               >
                 Contact Me
@@ -99,7 +102,7 @@ export function Hero() {
                     aria-label={label}
                     target={label === "Email" ? undefined : "_blank"}
                     rel={label === "Email" ? undefined : "noreferrer"}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink"
+                    className="icon-btn flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink"
                     data-cursor="link"
                   >
                     <Icon className="h-4 w-4" />

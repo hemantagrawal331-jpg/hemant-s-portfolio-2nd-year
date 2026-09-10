@@ -15,6 +15,7 @@ import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { Projects } from "@/components/Projects";
 import { Resume } from "@/components/Resume";
+import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { Skills } from "@/components/Skills";
 import { SmoothScroll } from "@/lib/SmoothScroll";
 
@@ -29,6 +30,7 @@ export default function HomePage() {
         <>
           <SmoothScroll ready />
           <CustomCursor />
+          <SiteAtmosphere />
           <Navbar />
           <main>
             <Hero />

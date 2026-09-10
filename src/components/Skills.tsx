@@ -1,34 +1,40 @@
 "use client";
 
 import { portfolioData } from "@/data/portfolio";
+import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 export function Skills() {
   return (
-    <section id="skills" className="relative bg-bg py-24 md:py-32">
+    <section id="skills" className="section bg-bg">
       <div className="stage">
-        <p className="label mb-4">{"// SKILLS"}</p>
-        <h2 className="font-display text-4xl font-semibold tracking-tight text-fg md:text-6xl">
-          Technical Skills
-        </h2>
-        <p className="mt-4 max-w-2xl text-muted">
-          Tools and concepts used in coursework, internship work, and personal projects — shown as working
-          knowledge, not claimed expertise.
-        </p>
-        <div className="mt-12 grid gap-4 md:grid-cols-2">
-          {portfolioData.skillGroups.map((group) => (
-            <article
-              key={group.title}
-              className="card p-6 transition duration-500 hover:-translate-y-1 hover:border-fg/20"
-            >
-              <h3 className="text-xl text-fg">{group.title}</h3>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {group.items.map((item) => (
-                  <span key={item} className="rounded-full border border-line px-3 py-1 text-[12px] text-muted">
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
+        <Reveal>
+          <SectionHeading
+            kicker="// SKILLS"
+            title="Technical Skills"
+            text="Tools and concepts used in coursework, internship work, and personal projects — shown as working knowledge, not claimed expertise."
+          />
+        </Reveal>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {portfolioData.skillGroups.map((group, index) => (
+            <Reveal key={group.title} delay={index * 0.04}>
+              <article className="card card-interactive h-full p-6">
+                <div className="mb-5 flex items-center justify-between">
+                  <p className="font-mono text-[11px] tracking-[0.16em] text-muted">
+                    {`0${index + 1} / ${String(portfolioData.skillGroups.length).padStart(2, "0")}`}
+                  </p>
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                </div>
+                <h3 className="text-xl text-fg">{group.title}</h3>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} className="chip">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>
