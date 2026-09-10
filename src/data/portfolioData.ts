@@ -40,6 +40,14 @@ export const portfolioData = {
       "Computer Science Engineering student specializing in **AI & Machine Learning at the University of Delhi**, with hands-on industry experience in **QA Automation and REST API engineering**.",
     heroStack: ["Java", "AI/ML", "Rest Assured", "TestNG", "REST APIs", "DSA", "SQL", "Git"],
     heroMotto: "Build. Automate. Test. Improve.",
+    loaderLine: "BUILD → AUTOMATE → TEST → IMPROVE",
+    loaderSteps: [
+      { index: "01", label: "BUILD" },
+      { index: "02", label: "AUTOMATE" },
+      { index: "03", label: "TEST" },
+      { index: "04", label: "ANALYZE" },
+      { index: "05", label: "IMPROVE" },
+    ],
     aboutPills: [
       "Curious",
       "Technical",

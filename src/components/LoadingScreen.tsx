@@ -4,9 +4,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
 
-export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
-  const [progress, setProgress] = useState(1);
+export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void }>) {
+  const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
+  const steps = portfolioData.personal.loaderSteps;
+  const stepIndex = Math.min(steps.length - 1, Math.floor((progress / 100) * steps.length));
+  const step = steps[stepIndex];
 
   useEffect(() => {
     let frame = 0;
@@ -38,7 +41,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     const tick = (now: number) => {
       const t = Math.min(1, (now - started) / duration);
       const eased = 1 - Math.pow(1 - t, 3);
-      setProgress(Math.max(1, Math.round(eased * 100)));
+      setProgress(Math.round(eased * 100));
       if (t < 1) {
         frame = requestAnimationFrame(tick);
       } else {
@@ -74,11 +77,23 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
               {portfolioData.personal.name.replace(" ", "").toUpperCase()}
             </motion.p>
             <p className="mt-3 text-[11px] tracking-[0.28em] text-white/40">
-              AI & ML · QA AUTOMATION
+              {portfolioData.personal.loaderLine}
             </p>
-            <p className="mt-14 font-display text-5xl font-semibold tracking-tight text-white md:text-6xl">
-              {progress}%
-            </p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={step.label}
+                className="mt-14"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.22 }}
+              >
+                <p className="font-mono text-[12px] tracking-[0.28em] text-white/35">{step.index}</p>
+                <p className="mt-2 font-display text-5xl font-semibold tracking-tight text-white md:text-6xl">
+                  {step.label}
+                </p>
+              </motion.div>
+            </AnimatePresence>
             <div className="mt-8 h-[2px] w-full overflow-hidden bg-white/15">
               <motion.div
                 className="h-full bg-white"
