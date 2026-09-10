@@ -154,10 +154,11 @@ export function Hero({ ready }: { ready: boolean }) {
               </MagneticButton>
               <MagneticButton
                 href={portfolioData.social.resume}
-                download="Hemant_Agrawal_Resume.docx"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
               >
-                Download Resume <span className="arrow">↗</span>
+                VIEW RESUME <span className="arrow">↗</span>
               </MagneticButton>
               <MagneticButton
                 href="#contact"

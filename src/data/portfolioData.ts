@@ -108,7 +108,10 @@ export const portfolioData = {
     linkedin: "https://www.linkedin.com/in/hemant-agrawal-88945636a",
     instagram: "https://www.instagram.com/3946.hemant/",
     phone: "+91 95483 75037",
-    resume: "/Hemant_Agrawal_Resume.docx",
+    resume: "/Hemant_Agrawal_Resume.pdf",
+    resumeFileName: "Hemant_Agrawal_Resume.pdf",
+    resumeText: "View or download my latest resume.",
+    resumeMeta: "PDF · Updated Resume",
   },
 
   nav: [

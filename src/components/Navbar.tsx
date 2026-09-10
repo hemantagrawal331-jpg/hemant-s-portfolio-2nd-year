@@ -89,7 +89,8 @@ export function Navbar() {
               <ThemeToggle lightNav={lightNav} />
               <a
                 href={portfolioData.social.resume}
-                download="Hemant_Agrawal_Resume.docx"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`btn-line hidden rounded-full px-4 py-2 text-[12px] font-medium sm:inline-flex ${
                   lightNav ? "bg-ink text-white" : "bg-fg text-bg"
                 }`}
@@ -156,11 +157,12 @@ export function Navbar() {
             </div>
             <a
               href={portfolioData.social.resume}
-              download="Hemant_Agrawal_Resume.docx"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="btn-line mt-6 w-full rounded-full bg-invert px-6 py-4 text-center text-sm text-invert-fg"
+              className="btn-line mt-6 min-h-12 w-full rounded-full bg-invert px-6 py-4 text-center text-sm text-invert-fg"
             >
-              Resume <span className="arrow">↗</span>
+              VIEW RESUME <span className="arrow">↗</span>
             </a>
           </motion.nav>
         )}
