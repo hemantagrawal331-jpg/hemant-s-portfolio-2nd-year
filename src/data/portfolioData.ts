@@ -10,9 +10,9 @@ export const portfolioData = {
     firstName: "Hemant",
     lastName: "Agrawal",
     monogram: "HA",
-    title: "Computer Science Engineering Student | AI & Machine Learning",
+    title: "Computer Science Engineering Student | AI/ML | Software Engineering | QA Automation",
     positioning:
-      "Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG, Rest Assured, Maven, Git, and Postman. Interested in building reliable software, automating repetitive processes, finding bugs, and developing intelligent software solutions.",
+      "Second-year Computer Science Engineering student specializing in AI & Machine Learning with practical industry experience in QA Automation and REST API testing.",
     brand: "Build. Automate. Test. Improve.",
     traits: [
       "Curious",
@@ -30,14 +30,14 @@ export const portfolioData = {
     university: "University of Delhi",
     location: "India",
     githubRepoName: "attentive_api_automation",
-    eyebrow: "AI / ML STUDENT · SOFTWARE ENGINEERING · QA AUTOMATION",
+    eyebrow: "CSE STUDENT · AI/ML · SOFTWARE ENGINEERING · QA AUTOMATION",
     heroHeadline: [
       "I Build Intelligent Systems.",
       "Automate Quality.",
       "Solve Real Problems.",
     ],
     heroDescription:
-      "Computer Science Engineering student specializing in **AI & Machine Learning at the University of Delhi**, with hands-on industry experience in **QA Automation and REST API engineering**.",
+      "Second-year **Computer Science Engineering** student specializing in **AI & Machine Learning at the University of Delhi**, with practical industry experience in **QA Automation and REST API testing**.",
     heroStack: ["Java", "AI/ML", "Rest Assured", "TestNG", "REST APIs", "DSA", "SQL", "Git"],
     heroMotto: "Build. Automate. Test. Improve.",
     loaderLine: "BUILD → AUTOMATE → TEST → IMPROVE",
@@ -63,9 +63,9 @@ export const portfolioData = {
       paragraphs: [
         "I'm **Hemant Agrawal**, a Computer Science Engineering student specializing in **Artificial Intelligence & Machine Learning at the University of Delhi**.",
         "My engineering journey sits at the intersection of **AI/ML, software engineering, and quality automation**.",
-        "I've gained hands-on industry experience in **QA Automation and REST API testing**, working with Java, Rest Assured, TestNG, Maven, Git, Postman, JSON, and SQL.",
+        "I've gained hands-on industry experience in **QA Automation and REST API testing**, working with Java, Rest Assured, TestNG, Maven, Git, GitHub, Postman, REST APIs, JSON, SQL, POJOs, and API authentication.",
         "I enjoy understanding how systems work, automating repetitive workflows, challenging software with meaningful test cases, and building practical solutions to real-world problems.",
-        "Currently, I'm strengthening my foundation in **Data Structures & Algorithms, AI/ML, backend engineering, and software architecture**.",
+        "Currently, I'm strengthening my foundations in **Data Structures & Algorithms, Artificial Intelligence, Machine Learning, backend engineering, software engineering, and system design fundamentals**.",
       ],
       approachLabel: "My approach",
       approach:
@@ -81,9 +81,9 @@ export const portfolioData = {
         "REST APIs",
         "JSON",
         "SQL",
+        "POJOs",
         "API authentication",
-        "Automated test cases",
-        "Response validation",
+        "Automated API testing",
       ],
       facts: [
         { label: "Education", value: "CSE — AI & ML" },
@@ -336,19 +336,19 @@ export const portfolioData = {
   learning: [
     {
       title: "Artificial Intelligence & Machine Learning",
-      text: "Learning AI/ML concepts and experimenting with AI-powered applications.",
+      text: "Strengthening AI and Machine Learning foundations, and applying them in AI-powered applications.",
     },
     {
       title: "Data Structures & Algorithms",
-      text: "Practicing algorithms, complexity analysis, recursion, searching, sorting and graph concepts.",
+      text: "Practicing algorithms, complexity analysis, recursion, searching, sorting, and graph concepts.",
     },
     {
-      title: "Software Engineering",
-      text: "Improving understanding of clean architecture, testing, APIs, version control and development workflows.",
+      title: "Backend Engineering",
+      text: "Building a stronger understanding of APIs, request/response flows, data handling, and backend systems.",
     },
     {
-      title: "Automation Testing",
-      text: "Deepening knowledge of Java-based automation, REST APIs, TestNG, Rest Assured and scalable testing frameworks.",
+      title: "Software Engineering & System Design",
+      text: "Improving software engineering practice and learning system design fundamentals — how reliable systems are structured, tested, and improved.",
     },
   ],
 

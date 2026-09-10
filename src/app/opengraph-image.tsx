@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
-export const alt = "Hemant Agrawal | AI/ML Student & QA Automation Engineer";
+export const alt = "Hemant Agrawal | CSE Student | AI/ML | Software Engineering | QA Automation";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 72, fontWeight: 700, lineHeight: 1.05 }}>Hemant Agrawal</div>
           <div style={{ marginTop: 22, fontSize: 30, color: "#c5d4cf" }}>
-            AI/ML Student & QA Automation Engineer
+            CSE Student · AI/ML · Software Engineering · QA Automation
           </div>
         </div>
         <div style={{ fontSize: 22, color: "#8aa39a" }}>

@@ -15,9 +15,9 @@ const sans = Inter({
 });
 
 const siteUrl = "https://hemant-agrawal-portfolio.vercel.app";
-const title = "Hemant Agrawal | AI/ML Student & QA Automation Engineer";
+const title = "Hemant Agrawal | CSE Student | AI/ML | Software Engineering | QA Automation";
 const description =
-  "Hemant Agrawal is a Computer Science Engineering student specializing in AI & Machine Learning with practical experience in QA Automation, REST API testing, Java, TestNG and Rest Assured.";
+  "Second-year Computer Science Engineering student at the University of Delhi, specializing in AI & Machine Learning, with practical industry experience in QA Automation and REST API testing.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
