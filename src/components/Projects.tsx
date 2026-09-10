@@ -15,13 +15,13 @@ export function Projects() {
   }, [active]);
 
   return (
-    <section id="work" className="relative bg-bg py-24 md:py-32">
+    <section id="work" className="section bg-bg">
       <div className="stage">
         <p className="label mb-4">{"// PROJECTS"}</p>
-        <h2 className="font-display text-4xl font-semibold tracking-tight text-fg md:text-6xl">
+        <h2 className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
           Featured Projects
         </h2>
-        <div className="mt-12 grid gap-4 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {portfolioData.projects.map((project) => (
             <ProjectCard key={project.id} project={project} onOpen={setActive} />
           ))}

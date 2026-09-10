@@ -15,6 +15,7 @@ const config: Config = {
         invert: "var(--invert)",
         "invert-fg": "var(--invert-fg)",
         ink: "#111111",
+        accent: "var(--accent)",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
