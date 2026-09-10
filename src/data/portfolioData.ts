@@ -31,7 +31,12 @@ export const portfolioData = {
     location: "India",
     githubRepoName: "attentive_api_automation",
     eyebrow: "Hi, I'm Hemant",
-    rotatingRoles: ["AI / ML STUDENT", "QA AUTOMATION", "CONTINUOUS LEARNER"],
+    rotatingRoles: [
+      "AI / ML STUDENT",
+      "SOFTWARE DEVELOPER",
+      "QA AUTOMATION",
+      "CONTINUOUS LEARNER",
+    ],
     heroLine: "I build, automate, test, and continuously learn.",
     heroDescription:
       "Curious, technical, and practical. CSE student specializing in AI & Machine Learning, with hands-on QA Automation and REST API testing. I like solving problems by automating workflows, checking quality carefully, and turning ideas into useful software — then learning what to improve next.",
