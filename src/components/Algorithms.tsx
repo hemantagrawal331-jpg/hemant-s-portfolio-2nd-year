@@ -9,7 +9,7 @@ export function Algorithms() {
   const start = headingRevealCount(true);
 
   return (
-    <section className="section bg-bg">
+    <section className="section">
       <RevealGroup className="stage">
         <SectionHeading
           kicker="// ADA"

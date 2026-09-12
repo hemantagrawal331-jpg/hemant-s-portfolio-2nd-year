@@ -8,7 +8,7 @@ export function Education() {
   const edu = portfolioData.education;
 
   return (
-    <section id="education" className="section bg-bg">
+    <section id="education" className="section">
       <RevealGroup className="stage">
         <SectionHeading kicker="// EDUCATION" title="Education" />
         <RevealItem index={headingRevealCount(false)} className="relative mt-12 pl-6 md:pl-10">

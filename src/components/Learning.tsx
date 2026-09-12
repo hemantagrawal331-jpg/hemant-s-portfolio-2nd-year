@@ -8,7 +8,7 @@ export function Learning() {
   const start = headingRevealCount(false);
 
   return (
-    <section className="section bg-bg">
+    <section className="section">
       <RevealGroup className="stage">
         <SectionHeading kicker="// NOW · 04 IMPROVE" title="Currently Learning" />
         <div className="mt-10 grid gap-4 md:grid-cols-2">

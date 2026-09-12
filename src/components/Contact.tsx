@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
 import { MagneticButton } from "./MagneticButton";
 import { RevealGroup, RevealItem } from "./Reveal";
+import { TerminalKicker } from "./TerminalKicker";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -27,11 +28,11 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="section bg-bg">
+    <section id="contact" className="section">
       <RevealGroup className="stage grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <RevealItem as="p" index={0} className="label mb-5">
-            {"// CONTACT"}
+          <RevealItem index={0}>
+            <TerminalKicker text="// CONTACT" className="mb-5" />
           </RevealItem>
           <RevealItem as="h2" index={1} className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
             LET&apos;S BUILD

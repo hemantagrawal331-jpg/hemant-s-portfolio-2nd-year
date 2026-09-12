@@ -1,8 +1,8 @@
 "use client";
 
-import { useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState, type CSSProperties } from "react";
 import { portfolioData } from "@/data/portfolioData";
+import { useTypedLine } from "@/lib/useTypedLine";
 import { headingRevealCount, RevealGroup, RevealItem, useRevealVisible } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
@@ -17,34 +17,6 @@ const CATEGORIES = [
 
 function skillPath(label: string) {
   return label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-}
-
-function useTypedLine(text: string, enabled: boolean) {
-  const reduce = useReducedMotion();
-  const [value, setValue] = useState(reduce ? text : "");
-
-  useEffect(() => {
-    if (!enabled) {
-      setValue("");
-      return;
-    }
-    if (reduce) {
-      setValue(text);
-      return;
-    }
-
-    setValue("");
-    let index = 0;
-    const timer = window.setInterval(() => {
-      index += 1;
-      setValue(text.slice(0, index));
-      if (index >= text.length) window.clearInterval(timer);
-    }, 28);
-
-    return () => window.clearInterval(timer);
-  }, [text, enabled, reduce]);
-
-  return value;
 }
 
 function SkillPanel({
@@ -106,7 +78,7 @@ export function Skills() {
   }, [active]);
 
   return (
-    <section id="skills" className="section bg-bg">
+    <section id="skills" className="section">
       <RevealGroup className="stage" stagger={80}>
         <SectionHeading
           kicker="// SKILLS · 03 TEST"

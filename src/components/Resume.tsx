@@ -3,18 +3,19 @@
 import { portfolioData } from "@/data/portfolioData";
 import { MagneticButton } from "./MagneticButton";
 import { RevealGroup, RevealItem } from "./Reveal";
+import { TerminalKicker } from "./TerminalKicker";
 
 export function Resume() {
   const resumeHref = portfolioData.social.resume;
   const resumeFileName = portfolioData.social.resumeFileName;
 
   return (
-    <section id="resume" className="section bg-bg">
+    <section id="resume" className="section">
       <RevealGroup className="stage">
         <div className="flex flex-col justify-between gap-10 border border-line bg-elevated p-6 sm:p-8 md:flex-row md:items-end md:p-10">
           <div className="max-w-xl">
-            <RevealItem as="p" index={0} className="label mb-4">
-              {"// RESUME"}
+            <RevealItem index={0}>
+              <TerminalKicker text="// RESUME" className="mb-4" />
             </RevealItem>
             <RevealItem as="h2" index={1} className="display text-[clamp(2.4rem,8vw,5.5rem)] text-fg">
               RESUME

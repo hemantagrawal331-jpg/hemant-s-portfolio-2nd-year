@@ -335,6 +335,58 @@ textarea:focus-visible {
   background: var(--accent-dim);
 }
 
+.site-atmosphere .tech-grid {
+  opacity: 0.55;
+}
+
+.mesh-field {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+}
+
+.mesh-blob {
+  position: absolute;
+  width: min(52vw, 620px);
+  height: min(52vw, 620px);
+  border-radius: 999px;
+  filter: blur(90px);
+  background: var(--accent);
+}
+
+.mesh-a {
+  top: -12%;
+  left: -10%;
+  animation: mesh-drift-a 32s ease-in-out infinite;
+}
+
+.mesh-b {
+  right: -14%;
+  bottom: 8%;
+  opacity: 0.7;
+  animation: mesh-drift-b 40s ease-in-out infinite;
+}
+
+@keyframes mesh-drift-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(8%, 10%, 0) scale(1.08);
+  }
+}
+
+@keyframes mesh-drift-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-10%, -8%, 0) scale(1.12);
+  }
+}
+
 .tech-grid {
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
@@ -461,10 +513,10 @@ textarea:focus-visible {
 
 .terminal-caret {
   display: inline-block;
-  width: 0.55ch;
-  height: 0.9em;
-  margin-left: 3px;
-  vertical-align: -0.08em;
+  width: 0.7ch;
+  height: 1em;
+  margin-left: 4px;
+  vertical-align: -0.15em;
   background: var(--accent);
   animation: caret-blink 1s steps(1) infinite;
 }
@@ -574,6 +626,12 @@ textarea:focus-visible {
   .project-card-glow,
   .project-card.is-hot .project-card-glow {
     opacity: 0 !important;
+  }
+
+  .mesh-field,
+  .mesh-blob,
+  .tech-grid-shift {
+    animation: none !important;
   }
 
   .visual-panel img {

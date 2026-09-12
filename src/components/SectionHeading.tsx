@@ -1,6 +1,7 @@
 "use client";
 
 import { RevealItem } from "./Reveal";
+import { TerminalKicker } from "./TerminalKicker";
 
 export function SectionHeading({
   kicker,
@@ -13,8 +14,8 @@ export function SectionHeading({
 }) {
   return (
     <div className="max-w-3xl">
-      <RevealItem as="p" index={0} className="label mb-4">
-        {kicker}
+      <RevealItem index={0}>
+        <TerminalKicker text={kicker} className="mb-4" />
       </RevealItem>
       <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
         {title}

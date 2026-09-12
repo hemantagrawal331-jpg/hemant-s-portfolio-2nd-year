@@ -8,7 +8,7 @@ export function Experience() {
   const job = portfolioData.experience[0];
 
   return (
-    <section id="experience" className="section bg-bg">
+    <section id="experience" className="section">
       <RevealGroup className="stage">
         <SectionHeading kicker="// EXPERIENCE · 02 AUTOMATE" title="Experience" />
         <RevealItem index={headingRevealCount(false)} className="relative mt-12 pl-6 md:pl-10">

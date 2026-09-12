@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { hrefFor, isPlaceholder, portfolioData, type Project } from "@/data/portfolioData";
 import { ProjectCard } from "./ProjectCard";
 import { RevealGroup, RevealItem } from "./Reveal";
+import { TerminalKicker } from "./TerminalKicker";
 
 export function ProjectSection() {
   const [active, setActive] = useState<Project | null>(null);
@@ -26,10 +27,10 @@ export function ProjectSection() {
   }, [active]);
 
   return (
-    <section id="work" className="section bg-bg">
+    <section id="work" className="section">
       <RevealGroup className="stage">
-        <RevealItem as="p" index={0} className="label mb-4">
-          {"// PROJECTS · BUILD"}
+        <RevealItem index={0}>
+          <TerminalKicker text="// PROJECTS · BUILD" className="mb-4" />
         </RevealItem>
         <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
           Featured Projects

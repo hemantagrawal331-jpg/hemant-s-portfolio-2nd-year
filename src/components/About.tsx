@@ -4,17 +4,18 @@ import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
 import { EmphasisText } from "./EmphasisText";
 import { RevealGroup, RevealItem } from "./Reveal";
+import { TerminalKicker } from "./TerminalKicker";
 
 export function About() {
   const [lead, ...rest] = portfolioData.personal.about.paragraphs;
 
   return (
-    <section id="about" className="section relative overflow-hidden bg-bg">
+    <section id="about" className="section relative overflow-hidden">
       <RevealGroup className="stage relative">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <RevealItem as="p" index={0} className="label mb-4">
-              {"// ABOUT"}
+            <RevealItem index={0}>
+              <TerminalKicker text="// ABOUT" className="mb-4" />
             </RevealItem>
             <RevealItem as="h2" index={1} className="max-w-2xl font-display text-2xl font-medium tracking-tight text-fg md:text-3xl">
               {portfolioData.personal.about.heading}
