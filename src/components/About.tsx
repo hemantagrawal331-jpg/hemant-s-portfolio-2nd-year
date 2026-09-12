@@ -3,27 +3,29 @@
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolioData";
 import { EmphasisText } from "./EmphasisText";
-import { Reveal } from "./Reveal";
+import { RevealGroup, RevealItem } from "./Reveal";
 
 export function About() {
   const [lead, ...rest] = portfolioData.personal.about.paragraphs;
 
   return (
     <section id="about" className="section relative overflow-hidden bg-bg">
-      <div className="stage relative">
-        <Reveal>
-          <div className="mb-10 flex items-end justify-between gap-6">
-            <div>
-              <p className="label mb-4">{"// ABOUT"}</p>
-              <h2 className="max-w-2xl font-display text-2xl font-medium tracking-tight text-fg md:text-3xl">
-                {portfolioData.personal.about.heading}
-              </h2>
-            </div>
-            <p className="hidden font-mono text-[11px] tracking-[0.2em] text-muted md:block">01 — BUILD</p>
+      <RevealGroup className="stage relative">
+        <div className="mb-10 flex items-end justify-between gap-6">
+          <div>
+            <RevealItem as="p" index={0} className="label mb-4">
+              {"// ABOUT"}
+            </RevealItem>
+            <RevealItem as="h2" index={1} className="max-w-2xl font-display text-2xl font-medium tracking-tight text-fg md:text-3xl">
+              {portfolioData.personal.about.heading}
+            </RevealItem>
           </div>
-        </Reveal>
+          <RevealItem as="p" index={2} className="hidden font-mono text-[11px] tracking-[0.2em] text-muted md:block">
+            01 — BUILD
+          </RevealItem>
+        </div>
         <div className="grid items-start gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
-          <Reveal>
+          <RevealItem index={3}>
             <div className="overflow-hidden rounded-[32px] border border-line bg-elevated p-3">
               <Image
                 src="/images/about-portrait.png"
@@ -37,9 +39,9 @@ export function About() {
                 <span className="text-[11px] tracking-[0.16em] text-muted">OPEN TO OPPORTUNITIES</span>
               </div>
             </div>
-          </Reveal>
+          </RevealItem>
 
-          <Reveal delay={0.08}>
+          <RevealItem index={4}>
             <div className="space-y-4 text-base font-normal leading-relaxed text-muted md:text-lg">
               <p>
                 <EmphasisText text={lead} />
@@ -71,9 +73,9 @@ export function About() {
                 </div>
               ))}
             </div>
-          </Reveal>
+          </RevealItem>
         </div>
-      </div>
+      </RevealGroup>
     </section>
   );
 }

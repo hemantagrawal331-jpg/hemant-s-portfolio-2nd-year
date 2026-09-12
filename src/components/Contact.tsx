@@ -3,6 +3,7 @@
 import { FormEvent, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
 import { MagneticButton } from "./MagneticButton";
+import { RevealGroup, RevealItem } from "./Reveal";
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -27,17 +28,23 @@ export function Contact() {
 
   return (
     <section id="contact" className="section bg-bg">
-      <div className="stage grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+      <RevealGroup className="stage grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <p className="label mb-5">{"// CONTACT"}</p>
-          <h2 className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
+          <RevealItem as="p" index={0} className="label mb-5">
+            {"// CONTACT"}
+          </RevealItem>
+          <RevealItem as="h2" index={1} className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
             LET&apos;S BUILD
             <span className="block">SOMETHING</span>
             <span className="block">USEFUL.</span>
-          </h2>
-          <p className="mt-6 max-w-md text-lg text-muted">Have an idea? Let&apos;s talk.</p>
-          <p className="mt-3 max-w-md text-sm leading-relaxed text-muted">{portfolioData.contact.text}</p>
-          <div className="mt-6 flex flex-col gap-1">
+          </RevealItem>
+          <RevealItem as="p" index={2} className="mt-6 max-w-md text-lg text-muted">
+            Have an idea? Let&apos;s talk.
+          </RevealItem>
+          <RevealItem as="p" index={3} className="mt-3 max-w-md text-sm leading-relaxed text-muted">
+            {portfolioData.contact.text}
+          </RevealItem>
+          <RevealItem index={4} className="mt-6 flex flex-col gap-1">
             <a href={email} className="text-fg" data-cursor="link">
               {portfolioData.social.email}
             </a>
@@ -53,8 +60,8 @@ export function Contact() {
                 {portfolioData.social.phone}
               </a>
             )}
-          </div>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          </RevealItem>
+          <RevealItem index={5} className="mt-8 flex flex-col gap-3 sm:flex-row">
             {linkedin && (
               <MagneticButton
                 href={linkedin}
@@ -85,10 +92,11 @@ export function Contact() {
                 Instagram <span className="arrow">↗</span>
               </MagneticButton>
             )}
-          </div>
+          </RevealItem>
         </div>
 
-        <form onSubmit={onSubmit} className="glass grid gap-3 p-6">
+        <RevealItem index={6}>
+          <form onSubmit={onSubmit} className="glass grid gap-3 p-6">
           <label className="grid gap-2">
             <span className="text-[12px] tracking-[0.14em] text-muted">NAME</span>
             <input
@@ -124,7 +132,8 @@ export function Contact() {
             {!email ? "ADD YOUR_EMAIL TO ENABLE" : sent ? "OPENING EMAIL" : "SEND MESSAGE ↗"}
           </MagneticButton>
         </form>
-      </div>
+        </RevealItem>
+      </RevealGroup>
     </section>
   );
 }

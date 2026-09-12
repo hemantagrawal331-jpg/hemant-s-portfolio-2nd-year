@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { hrefFor, isPlaceholder, portfolioData, type Project } from "@/data/portfolioData";
 import { ProjectCard } from "./ProjectCard";
+import { RevealGroup, RevealItem } from "./Reveal";
 
 export function ProjectSection() {
   const [active, setActive] = useState<Project | null>(null);
@@ -26,17 +27,21 @@ export function ProjectSection() {
 
   return (
     <section id="work" className="section bg-bg">
-      <div className="stage">
-        <p className="label mb-4">{"// PROJECTS · BUILD"}</p>
-        <h2 className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
+      <RevealGroup className="stage">
+        <RevealItem as="p" index={0} className="label mb-4">
+          {"// PROJECTS · BUILD"}
+        </RevealItem>
+        <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
           Featured Projects
-        </h2>
+        </RevealItem>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {portfolioData.projects.map((project) => (
-            <ProjectCard key={project.id} project={project} onOpen={setActive} />
+          {portfolioData.projects.map((project, index) => (
+            <RevealItem key={project.id} index={2 + index} className="h-full">
+              <ProjectCard project={project} onOpen={setActive} />
+            </RevealItem>
           ))}
         </div>
-      </div>
+      </RevealGroup>
 
       <AnimatePresence>
         {active && (
