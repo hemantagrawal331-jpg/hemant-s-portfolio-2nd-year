@@ -31,9 +31,13 @@ export function Experience() {
                 </span>
               ))}
             </div>
-            <ul className="mt-8 grid gap-3 md:grid-cols-2">
-              {job.work.map((item) => (
+            <p className="label mt-10 mb-4">Selected work</p>
+            <ul className="grid gap-3 md:grid-cols-2">
+              {job.work.map((item, index) => (
                 <li key={item} className="border-l border-line pl-4 text-sm leading-relaxed text-muted">
+                  <span className="mr-2 font-mono text-[10px] tracking-[0.14em] text-muted/80">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   {item}
                 </li>
               ))}

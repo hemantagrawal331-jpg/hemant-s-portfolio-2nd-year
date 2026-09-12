@@ -13,6 +13,10 @@ export function Contact() {
   const linkedin = hrefFor(portfolioData.social.linkedin);
   const instagram = hrefFor(portfolioData.social.instagram);
   const phone = hrefFor(portfolioData.social.phone, "phone");
+  const contactHeading = (() => {
+    const words = portfolioData.contact.heading.toUpperCase().replace(/\.$/, "").split(" ");
+    return [words.slice(0, 2).join(" "), words[2] ?? "", `${words.slice(3).join(" ")}.`].filter(Boolean);
+  })();
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,9 +39,11 @@ export function Contact() {
             <TerminalKicker text="// CONTACT" className="mb-5" />
           </RevealItem>
           <RevealItem as="h2" index={1} className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
-            LET&apos;S BUILD
-            <span className="block">SOMETHING</span>
-            <span className="block">USEFUL.</span>
+            {contactHeading.map((line) => (
+              <span key={line} className="block">
+                {line}
+              </span>
+            ))}
           </RevealItem>
           <RevealItem as="p" index={2} className="mt-6 max-w-md text-lg text-muted">
             Have an idea? Let&apos;s talk.

@@ -86,16 +86,31 @@ export function Skills() {
           text="Tools and concepts used in coursework, internship work, and personal projects — shown as working knowledge, not claimed expertise."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-1" role="tablist" aria-label="Skill categories">
             {CATEGORIES.map((category, index) => {
               const selected = active === category.label;
               return (
                 <RevealItem key={category.label} index={start + index}>
                   <button
                     type="button"
+                    role="tab"
+                    id={`skill-tab-${index}`}
+                    aria-selected={selected}
+                    aria-controls="skill-panel"
+                    tabIndex={selected ? 0 : -1}
                     onMouseEnter={() => setActive(category.label)}
                     onFocus={() => setActive(category.label)}
                     onClick={() => setActive(category.label)}
+                    onKeyDown={(event) => {
+                      if (event.key !== "ArrowDown" && event.key !== "ArrowRight" && event.key !== "ArrowUp" && event.key !== "ArrowLeft") {
+                        return;
+                      }
+                      event.preventDefault();
+                      const delta = event.key === "ArrowDown" || event.key === "ArrowRight" ? 1 : -1;
+                      const next = (index + delta + CATEGORIES.length) % CATEGORIES.length;
+                      setActive(CATEGORIES[next].label);
+                      document.getElementById(`skill-tab-${next}`)?.focus();
+                    }}
                     className={`card flex w-full items-center justify-between px-5 py-4 text-left transition-colors duration-300 ${
                       selected ? "border-[color-mix(in_srgb,var(--accent)_45%,var(--line))] bg-[var(--accent-dim)]" : ""
                     }`}
@@ -108,7 +123,9 @@ export function Skills() {
               );
             })}
           </div>
-          <SkillPanel active={active} items={items} />
+          <div role="tabpanel" id="skill-panel" aria-labelledby={`skill-tab-${CATEGORIES.findIndex((item) => item.label === active)}`}>
+            <SkillPanel active={active} items={items} />
+          </div>
         </div>
       </RevealGroup>
     </section>

@@ -14,11 +14,15 @@ import { MagneticButton } from "./MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const HEADLINES = [
-  ["I BUILD", "INTELLIGENT", "SYSTEMS."],
-  ["AUTOMATE QUALITY."],
-  ["SOLVE REAL", "PROBLEMS."],
-];
+function headlineBlocks(lines: readonly string[]) {
+  return lines.map((line) => {
+    const text = line.toUpperCase();
+    if (text.startsWith("I BUILD")) return ["I BUILD", "INTELLIGENT", "SYSTEMS."];
+    if (text.startsWith("AUTOMATE")) return ["AUTOMATE QUALITY."];
+    if (text.startsWith("SOLVE")) return ["SOLVE REAL", "PROBLEMS."];
+    return [text];
+  });
+}
 
 export function Hero({ ready }: { ready: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
@@ -55,6 +59,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
   const show = ready || reduce;
   const roles = portfolioData.personal.rotatingRoles;
+  const headlines = headlineBlocks(portfolioData.personal.heroHeadline);
   const [roleIndex, setRoleIndex] = useState(0);
 
   useEffect(() => {
@@ -95,7 +100,7 @@ export function Hero({ ready }: { ready: boolean }) {
               </motion.span>
             </p>
             <h1 className="display w-full text-[clamp(2.05rem,5vw,4.15rem)] text-ink">
-              {HEADLINES.map((block, blockIndex) => (
+              {headlines.map((block, blockIndex) => (
                 <span key={block.join(" ")} className={blockIndex > 0 ? "mt-3 block" : "block"}>
                   {block.map((line, lineIndex) => (
                     <span key={line} className="block overflow-hidden">

@@ -14,7 +14,7 @@ const sans = Inter({
   variable: "--font-sans",
 });
 
-const siteUrl = "https://hemant-agrawal-portfolio.vercel.app";
+const siteUrl = "https://hemant-s-portfolio-2nd-year.vercel.app";
 const title = "Hemant Agrawal | CSE Student | AI/ML | Software Engineering | QA Automation";
 const description =
   "Second-year Computer Science Engineering student at the University of Delhi, specializing in AI & Machine Learning, with practical industry experience in QA Automation and REST API testing.";
