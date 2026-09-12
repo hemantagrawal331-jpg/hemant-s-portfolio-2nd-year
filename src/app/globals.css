@@ -85,27 +85,6 @@ textarea:focus-visible {
   outline-offset: 3px;
 }
 
-.loader-flash {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  background: #fff;
-  mix-blend-mode: difference;
-  animation: loader-flash 0.22s ease-out forwards;
-}
-
-@keyframes loader-flash {
-  0% {
-    opacity: 0;
-  }
-  35% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .skip-link {
   position: absolute;
   left: 12px;
