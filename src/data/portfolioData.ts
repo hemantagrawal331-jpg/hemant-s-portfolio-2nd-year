@@ -115,10 +115,12 @@ export const portfolioData = {
   },
 
   nav: [
+    { label: "Home", href: "#top" },
     { label: "About", href: "#about" },
     { label: "Experience", href: "#experience" },
-    { label: "Projects", href: "#work" },
     { label: "Skills", href: "#skills" },
+    { label: "Projects", href: "#work" },
+    { label: "Education", href: "#education" },
     { label: "Contact", href: "#contact" },
   ],
 
