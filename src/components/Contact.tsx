@@ -110,7 +110,7 @@ export function Contact() {
               name="name"
               required
               autoComplete="name"
-              className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+              className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
             />
           </label>
           <label className="grid gap-2">
@@ -120,7 +120,7 @@ export function Contact() {
               type="email"
               required
               autoComplete="email"
-              className="rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+              className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
             />
           </label>
           <label className="grid gap-2">
@@ -128,7 +128,7 @@ export function Contact() {
             <textarea
               name="message"
               required
-              className="min-h-32 rounded-2xl border border-line bg-bg/60 px-4 py-4 text-sm text-fg outline-none focus:border-[var(--accent)]"
+              className="min-h-32 rounded-[var(--radius)] border border-line bg-bg/60 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
             />
           </label>
           <MagneticButton

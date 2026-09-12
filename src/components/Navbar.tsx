@@ -45,14 +45,15 @@ export function Navbar() {
           >
             <a
               href="#top"
-              className={`font-display text-lg font-semibold tracking-tight ${
+              className={`flex items-center gap-2.5 ${
                 lightNav ? "text-ink" : "text-fg"
               }`}
               aria-label="Hemant Agrawal — home"
               data-cursor="link"
               onClick={() => setOpen(false)}
             >
-              Hemant
+              <span className="monogram">{portfolioData.personal.monogram}</span>
+              <span className="font-display text-lg font-semibold tracking-tight">Hemant</span>
             </a>
 
             <nav className="hidden items-center gap-5 lg:flex xl:gap-7" aria-label="Primary">
@@ -62,7 +63,7 @@ export function Navbar() {
                   <a
                     key={item.href}
                     href={item.href}
-                    className={`group relative text-[12px] tracking-[0.06em] transition-colors ${
+                    className={`group relative font-mono text-[11px] tracking-[0.12em] uppercase transition-colors ${
                       lightNav
                         ? isActive
                           ? "text-ink"
@@ -91,7 +92,7 @@ export function Navbar() {
                 href={portfolioData.social.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`btn-line hidden rounded-full px-4 py-2 text-[12px] font-medium sm:inline-flex ${
+                className={`btn-line hidden rounded-full px-4 py-2 font-mono text-[11px] font-medium tracking-[0.12em] uppercase sm:inline-flex ${
                   lightNav ? "bg-ink text-white" : "bg-fg text-bg"
                 }`}
                 data-cursor="link"
@@ -100,7 +101,7 @@ export function Navbar() {
               </a>
               <button
                 type="button"
-                className={`relative flex h-10 w-10 items-center justify-center rounded-full border lg:hidden ${
+                className={`relative flex h-10 w-10 items-center justify-center rounded-[4px] border lg:hidden ${
                   lightNav ? "border-ink/15" : "border-line"
                 }`}
                 onClick={() => setOpen((value) => !value)}

@@ -14,12 +14,13 @@ const config: Config = {
         line: "var(--line)",
         invert: "var(--invert)",
         "invert-fg": "var(--invert-fg)",
-        ink: "#111111",
+        ink: "#14130f",
         accent: "var(--accent)",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],
-        sans: ["var(--font-sans)", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
       transitionTimingFunction: {
         cinematic: "cubic-bezier(0.16, 1, 0.3, 1)",

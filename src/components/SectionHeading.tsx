@@ -15,13 +15,13 @@ export function SectionHeading({
   return (
     <div className="max-w-3xl">
       <RevealItem index={0}>
-        <TerminalKicker text={kicker} className="mb-4" />
+        <TerminalKicker text={kicker} className="mb-5" />
       </RevealItem>
-      <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
+      <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-[3.65rem]">
         {title}
       </RevealItem>
       {text ? (
-        <RevealItem as="p" index={2} className="mt-4 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
+        <RevealItem as="p" index={2} className="mt-5 max-w-xl text-sm leading-relaxed text-muted md:text-[15px]">
           {text}
         </RevealItem>
       ) : null}

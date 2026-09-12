@@ -181,7 +181,7 @@ export function Hero({ ready }: { ready: boolean }) {
                     aria-label={label}
                     target={label === "Email" ? undefined : "_blank"}
                     rel={label === "Email" ? undefined : "noopener noreferrer"}
-                    className="icon-btn flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 text-ink"
+                    className="icon-btn flex h-10 w-10 items-center justify-center rounded-[4px] border border-ink/15 text-ink"
                     data-cursor="link"
                   >
                     <Icon className="h-4 w-4" />

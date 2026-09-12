@@ -27,17 +27,17 @@ export function About() {
         </div>
         <div className="grid items-start gap-10 lg:grid-cols-[340px_1fr] lg:gap-16">
           <RevealItem index={3}>
-            <div className="overflow-hidden rounded-[32px] border border-line bg-elevated p-3">
+            <div className="overflow-hidden rounded-[var(--radius)] border border-line bg-elevated p-3">
               <Image
                 src="/images/about-portrait.png"
                 alt={`${portfolioData.personal.name}`}
                 width={892}
                 height={1536}
-                className="aspect-[4/5] w-full rounded-[24px] object-cover object-[70%_18%] transition duration-700 hover:scale-[1.03]"
+                className="aspect-[4/5] w-full rounded-[10px] object-cover object-[70%_18%] transition duration-700 hover:scale-[1.03]"
               />
               <div className="flex items-center gap-2 px-3 py-4">
-                <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-                <span className="text-[11px] tracking-[0.16em] text-muted">OPEN TO OPPORTUNITIES</span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
+                <span className="font-mono text-[11px] tracking-[0.16em] text-muted">OPEN TO OPPORTUNITIES</span>
               </div>
             </div>
           </RevealItem>
