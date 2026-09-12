@@ -114,7 +114,6 @@ export function Skills() {
                     className={`card flex w-full items-center justify-between px-5 py-4 text-left transition-colors duration-300 ${
                       selected ? "border-[color-mix(in_srgb,var(--accent)_45%,var(--line))] bg-[var(--accent-dim)]" : ""
                     }`}
-                    data-cursor="link"
                   >
                     <span className="title text-fg">{category.label}</span>
                     <span className="font-mono text-[11px] text-muted">{String(index + 1).padStart(2, "0")}</span>

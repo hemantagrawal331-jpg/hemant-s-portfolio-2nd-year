@@ -99,13 +99,15 @@ export function ProjectSection() {
                   onClick={() => setActive(null)}
                   className="rounded-full border border-line p-3 text-fg"
                   aria-label="Close case study"
-                  data-cursor="link"
                 >
                   <X className="h-5 w-5" />
                 </button>
               </div>
               {active.image && (
-                <div className="mb-8 overflow-hidden rounded-[24px] border border-line bg-[#111318]">
+                <div
+                  className="mb-8 overflow-hidden rounded-[24px] border border-line bg-[#111318]"
+                  data-cursor="image"
+                >
                   <Image
                     src={active.image}
                     alt={`${active.company || active.name} visual`}
