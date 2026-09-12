@@ -15,37 +15,37 @@ export function Footer() {
         <p className="text-[12px] tracking-[0.16em] text-muted">{portfolioData.personal.brand.toUpperCase()}</p>
         <div className="flex flex-wrap gap-5 text-[12px] tracking-[0.16em] text-muted">
           {github ? (
-            <a href={github} target="_blank" rel="noopener noreferrer" data-cursor="link">
+            <a href={github} target="_blank" rel="noopener noreferrer" className="link" data-cursor="link">
               GITHUB
             </a>
           ) : (
             <span>GITHUB</span>
           )}
           {linkedin ? (
-            <a href={linkedin} target="_blank" rel="noopener noreferrer" data-cursor="link">
+            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="link" data-cursor="link">
               LINKEDIN
             </a>
           ) : (
             <span>LINKEDIN</span>
           )}
           {instagram && (
-            <a href={instagram} target="_blank" rel="noopener noreferrer" data-cursor="link">
+            <a href={instagram} target="_blank" rel="noopener noreferrer" className="link" data-cursor="link">
               INSTAGRAM
             </a>
           )}
           {email && (
-            <a href={email} data-cursor="link">
+            <a href={email} className="link" data-cursor="link">
               EMAIL
             </a>
           )}
-          <a href="#resume" data-cursor="link">
+          <a href="#resume" className="link" data-cursor="link">
             RESUME
           </a>
         </div>
       </div>
       <div className="stage mt-6 flex items-center justify-between border-t border-line pt-5 text-[11px] tracking-[0.16em] text-muted">
         <p>© 2026 {portfolioData.personal.name.toUpperCase()}</p>
-        <a href="#top" className="text-fg" data-cursor="link">
+        <a href="#top" className="link" data-cursor="link">
           BACK TO TOP ↑
         </a>
       </div>

@@ -52,18 +52,18 @@ export function Contact() {
             {portfolioData.contact.text}
           </RevealItem>
           <RevealItem index={4} className="mt-6 flex flex-col gap-1">
-            <a href={email} className="text-fg" data-cursor="link">
+            <a href={email} className="link" data-cursor="link">
               {portfolioData.social.email}
             </a>
             <a
               href={hrefFor(portfolioData.social.personalEmail, "email")}
-              className="text-sm text-muted"
+              className="link text-sm text-muted"
               data-cursor="link"
             >
               {portfolioData.social.personalEmail}
             </a>
             {phone && (
-              <a href={phone} className="text-sm text-muted" data-cursor="link">
+              <a href={phone} className="link text-sm text-muted" data-cursor="link">
                 {portfolioData.social.phone}
               </a>
             )}

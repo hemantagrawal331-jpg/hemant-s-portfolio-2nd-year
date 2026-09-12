@@ -64,12 +64,10 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     className={`group relative font-mono text-[11px] tracking-[0.12em] uppercase transition-colors ${
-                      lightNav
-                        ? isActive
-                          ? "text-ink"
-                          : "text-ink/50 hover:text-ink"
-                        : isActive
-                          ? "text-fg"
+                      isActive
+                        ? "text-accent"
+                        : lightNav
+                          ? "text-ink/50 hover:text-ink"
                           : "text-fg/50 hover:text-fg"
                     }`}
                     data-cursor="link"
