@@ -3,26 +3,31 @@
 import { useEffect, useState } from "react";
 
 export function useActiveSection(ids: readonly string[]) {
-  const [active, setActive] = useState(ids[0] ?? "");
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const nodes = ids
-      .map((id) => document.getElementById(id.replace("#", "")))
-      .filter((node): node is HTMLElement => Boolean(node));
-    if (!nodes.length) return;
+    const update = () => {
+      const nodes = ids
+        .map((id) => document.getElementById(id.replace("#", "")))
+        .filter((node): node is HTMLElement => Boolean(node))
+        .sort((a, b) => a.offsetTop - b.offsetTop);
+      if (!nodes.length) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActive(`#${visible.target.id}`);
-      },
-      { rootMargin: "-32% 0px -52% 0px", threshold: [0.1, 0.25, 0.5] },
-    );
+      const offset = 96;
+      let current = "";
+      for (const node of nodes) {
+        if (node.getBoundingClientRect().top <= offset) current = `#${node.id}`;
+      }
+      setActive(current);
+    };
 
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
   }, [ids]);
 
   return active;

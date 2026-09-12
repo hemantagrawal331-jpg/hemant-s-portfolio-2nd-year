@@ -28,6 +28,7 @@
   --space-gutter: 20px;
   --radius: 12px;
   --duration: 280ms;
+  --nav-duration: 420ms;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
   --text-hero: clamp(1.9rem, 0.82rem + 4.9vw, 6.25rem);
   --text-display: clamp(2.1rem, 1.15rem + 3.4vw, 5rem);
@@ -63,7 +64,7 @@
 }
 
 html {
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: 5rem;
 }
 
 html,
@@ -350,6 +351,195 @@ textarea:focus-visible {
   border: 1px solid var(--line);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+.site-nav {
+  --site-nav-h: 4.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+}
+
+.site-nav.is-compact {
+  --site-nav-h: 3.5rem;
+}
+
+.site-nav-bar {
+  height: var(--site-nav-h);
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  transition:
+    height var(--nav-duration) var(--ease),
+    background-color var(--nav-duration) var(--ease),
+    border-color var(--nav-duration) var(--ease),
+    box-shadow var(--nav-duration) var(--ease),
+    backdrop-filter var(--nav-duration) var(--ease);
+}
+
+.site-nav.is-compact .site-nav-bar,
+.site-nav.is-open .site-nav-bar {
+  background: var(--glass);
+  border-bottom-color: var(--line);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--line) 70%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.site-nav-inner {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-nav-brand {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    font-size var(--nav-duration) var(--ease),
+    letter-spacing var(--nav-duration) var(--ease);
+}
+
+.site-nav.is-compact .site-nav-brand {
+  font-size: 0.88rem;
+  letter-spacing: -0.02em;
+}
+
+.site-nav-links {
+  display: none;
+  align-items: center;
+  gap: 1.65rem;
+}
+
+@media (min-width: 1024px) {
+  .site-nav-links {
+    display: flex;
+  }
+}
+
+.site-nav-link {
+  position: relative;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition:
+    color var(--nav-duration) var(--ease),
+    font-size var(--nav-duration) var(--ease);
+}
+
+.site-nav.is-compact .site-nav-link {
+  font-size: 10px;
+}
+
+.site-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.35rem;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width var(--nav-duration) var(--ease);
+}
+
+.site-nav-link:hover::after,
+.site-nav-link[aria-current]::after {
+  width: 100%;
+}
+
+.site-nav-toggle {
+  position: relative;
+  display: flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  transition:
+    height var(--nav-duration) var(--ease),
+    width var(--nav-duration) var(--ease),
+    border-color var(--nav-duration) var(--ease),
+    background-color var(--nav-duration) var(--ease);
+}
+
+.site-nav.is-compact .site-nav-toggle {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+@media (min-width: 1024px) {
+  .site-nav-toggle {
+    display: none;
+  }
+}
+
+.site-nav-toggle span {
+  position: absolute;
+  left: 50%;
+  display: block;
+  height: 1px;
+  width: 0.95rem;
+  background: currentColor;
+  transition: transform var(--nav-duration) var(--ease), opacity var(--nav-duration) var(--ease);
+}
+
+.site-nav-toggle span:first-child {
+  transform: translate(-50%, -4px);
+}
+
+.site-nav-toggle span:last-child {
+  transform: translate(-50%, 4px);
+}
+
+.site-nav.is-open .site-nav-toggle span:first-child {
+  transform: translate(-50%, 0) rotate(45deg);
+}
+
+.site-nav.is-open .site-nav-toggle span:last-child {
+  transform: translate(-50%, 0) rotate(-45deg);
+}
+
+.site-nav-menu {
+  position: fixed;
+  inset: var(--site-nav-h) 0 0 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem var(--space-gutter) 2rem;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 1024px) {
+  .site-nav-menu {
+    display: none;
+  }
+}
+
+.site-nav-menu-links a {
+  display: block;
+  padding: 0.95rem 0;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.35rem, 6vw, 1.85rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.site-nav-menu-links a[aria-current] {
+  color: var(--accent);
 }
 
 .monogram {
