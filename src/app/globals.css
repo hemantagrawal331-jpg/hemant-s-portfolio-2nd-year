@@ -298,51 +298,56 @@ textarea:focus-visible {
   border-color: color-mix(in srgb, var(--accent) 28%, var(--border));
 }
 
-.project-card-scene {
-  height: 100%;
-  perspective: 900px;
+.project-case {
+  border: 1px solid var(--line);
+  background: var(--elevated);
+  border-radius: var(--radius);
+  transition: border-color 420ms var(--ease);
 }
 
-.project-card {
-  --glow-x: 50%;
-  --glow-y: 50%;
+.project-case:hover {
+  border-color: color-mix(in srgb, var(--accent) 38%, var(--line));
+}
+
+.project-case-title {
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.55rem, 1.05rem + 2.1vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  text-transform: uppercase;
+  transition: transform 420ms var(--ease);
+}
+
+.project-case:hover .project-case-title {
+  transform: translateX(4px);
+}
+
+.project-visual {
   overflow: hidden;
-  transform-style: preserve-3d;
-  will-change: transform;
-  transition:
-    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.45s ease,
-    border-color 0.35s ease;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #111318;
+  height: clamp(220px, 36vw, 420px);
 }
 
-.project-card.card-interactive:hover {
-  transform: none;
+.project-visual img {
+  width: 100%;
+  height: 100%;
+  transition: transform 700ms var(--ease);
 }
 
-.project-card.card-interactive::after {
-  display: none;
+.project-case:hover .project-visual img {
+  transform: scale(1.035) translate3d(0, -8px, 0);
 }
 
-.project-card.is-hot {
-  border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+.project-arrow {
+  display: inline-block;
+  transition: transform 420ms var(--ease);
 }
 
-.project-card-glow {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  opacity: 0;
-  background: radial-gradient(
-    240px circle at var(--glow-x) var(--glow-y),
-    color-mix(in srgb, var(--accent) 8%, transparent),
-    transparent 55%
-  );
-  transition: opacity var(--duration) var(--ease);
-}
-
-.project-card.is-hot .project-card-glow {
-  opacity: 1;
+.project-case:hover .project-arrow {
+  transform: translateX(5px);
 }
 
 .glass {
@@ -610,21 +615,18 @@ textarea:focus-visible {
   .skill-chip,
   .reveal-group:not(.is-visible) .reveal-item,
   .reveal-group:not(.is-visible) .timeline-line,
-  .project-card {
+  .project-case,
+  .project-case-title,
+  .project-arrow {
     opacity: 1 !important;
     transform: none !important;
-  }
-
-  .project-card-glow,
-  .project-card.is-hot .project-card-glow {
-    opacity: 0 !important;
   }
 
   .tech-grid-shift {
     animation: none !important;
   }
 
-  .visual-panel img {
+  .project-visual img {
     transform: none !important;
   }
 }

@@ -62,9 +62,9 @@ export function ProjectSection() {
         <RevealItem as="h2" index={1} className="heading text-fg">
           Featured Projects
         </RevealItem>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 flex flex-col gap-8 md:mt-16 md:gap-10">
           {portfolioData.projects.map((project, index) => (
-            <RevealItem key={project.id} index={2 + index} className="h-full">
+            <RevealItem key={project.id} index={2 + index}>
               <ProjectCard project={project} onOpen={setActive} />
             </RevealItem>
           ))}
