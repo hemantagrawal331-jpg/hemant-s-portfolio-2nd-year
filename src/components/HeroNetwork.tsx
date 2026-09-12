@@ -65,7 +65,7 @@ export function HeroNetwork() {
           stroke="currentColor"
           strokeOpacity="0.06"
           strokeDasharray="2 10"
-          className={reduced ? undefined : "orbit-spin"}
+          className={coarse || reduced ? undefined : "orbit-spin"}
         />
 
         {paths.map((path) => (
@@ -80,7 +80,7 @@ export function HeroNetwork() {
           />
         ))}
 
-        {!reduced && (
+        {!coarse && !reduced && (
           <>
             <circle r="2" fill="currentColor">
               <animateMotion dur="7.5s" repeatCount="indefinite" path="M68 58 L180 150" />
@@ -107,7 +107,9 @@ export function HeroNetwork() {
                 stroke="currentColor"
                 strokeWidth={isCenter ? 1.3 : 1.05}
               />
-              {isCenter && <circle className="node-pulse" cx={node.x} cy={node.y} r={node.r} fill="none" stroke="currentColor" />}
+              {isCenter && !coarse && !reduced && (
+                <circle className="node-pulse" cx={node.x} cy={node.y} r={node.r} fill="none" stroke="currentColor" />
+              )}
               <circle cx={node.x} cy={node.y} r={isCenter ? 3.4 : 2.2} fill="currentColor" />
               <text
                 x={node.x}

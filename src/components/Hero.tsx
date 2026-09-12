@@ -121,7 +121,15 @@ export function Hero({ ready }: { ready: boolean }) {
                 </span>
               ))}
             </h1>
-            <p className="lede mt-8 max-w-xl text-ink/78">
+            <p className="meta mt-7 max-w-xl text-ink/48">
+              {portfolioData.personal.year} · CSE · {portfolioData.personal.specialization} ·{" "}
+              {portfolioData.personal.university}
+            </p>
+            <p className="meta mt-2 text-ink/48">
+              {portfolioData.experience[0].role}, {portfolioData.experience[0].company} ·{" "}
+              {portfolioData.experience[0].status}
+            </p>
+            <p className="lede mt-6 max-w-xl text-ink/78">
               {portfolioData.personal.heroLine}
             </p>
             <motion.p
@@ -132,6 +140,28 @@ export function Hero({ ready }: { ready: boolean }) {
             >
               {portfolioData.personal.heroDescription}
             </motion.p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <MagneticButton
+                href="#work"
+                className="btn-line min-h-11 rounded-full bg-ink px-5 py-3 text-[12px] text-white"
+              >
+                View My Work <span className="arrow">↗</span>
+              </MagneticButton>
+              <MagneticButton
+                href={portfolioData.social.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-line min-h-11 rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
+              >
+                VIEW RESUME <span className="arrow">↗</span>
+              </MagneticButton>
+              <MagneticButton
+                href="#contact"
+                className="btn-line min-h-11 rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
+              >
+                Contact Me
+              </MagneticButton>
+            </div>
           </motion.div>
 
           <motion.div
@@ -150,28 +180,6 @@ export function Hero({ ready }: { ready: boolean }) {
             <p className="meta mt-1 text-center text-ink/32 lg:text-right">
               AI / ML → AUTOMATION → SOFTWARE QUALITY
             </p>
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <MagneticButton
-                href="#work"
-                className="btn-line rounded-full bg-ink px-5 py-3 text-[12px] text-white"
-              >
-                View My Work <span className="arrow">↗</span>
-              </MagneticButton>
-              <MagneticButton
-                href={portfolioData.social.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
-              >
-                VIEW RESUME <span className="arrow">↗</span>
-              </MagneticButton>
-              <MagneticButton
-                href="#contact"
-                className="btn-line rounded-full border border-ink/15 px-5 py-3 text-[12px] text-ink"
-              >
-                Contact Me
-              </MagneticButton>
-            </div>
             <div className="mt-5 flex gap-3 lg:justify-end">
               {socials.map(({ href, label, icon: Icon }) =>
                 href ? (

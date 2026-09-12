@@ -1,6 +1,9 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { useGSAP } from "@gsap/react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -9,11 +12,16 @@ import { ProjectCard } from "./ProjectCard";
 import { RevealGroup, RevealItem } from "./Reveal";
 import { TerminalKicker } from "./TerminalKicker";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function ProjectSection() {
   const [active, setActive] = useState<Project | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const lastFocus = useRef<HTMLElement | null>(null);
+  const featuredRef = useRef<HTMLDivElement>(null);
+  const reduce = useReducedMotion();
+  const [featured, ...rest] = portfolioData.projects;
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", Boolean(active));
@@ -53,6 +61,53 @@ export function ProjectSection() {
     };
   }, [active]);
 
+  useGSAP(
+    () => {
+      const node = featuredRef.current;
+      if (!node || reduce) return;
+      if (window.matchMedia("(max-width: 768px), (pointer: coarse)").matches) return;
+
+      const visual = node.querySelector(".visual-panel");
+      const image = node.querySelector(".project-visual-img");
+      if (!visual) return;
+
+      gsap.fromTo(
+        visual,
+        { clipPath: "inset(10% 8% 10% 8%)", scale: 1.04 },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          scale: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: node,
+            start: "top 78%",
+            end: "top 28%",
+            scrub: 0.6,
+          },
+        },
+      );
+
+      if (image) {
+        gsap.fromTo(
+          image,
+          { scale: 1.12, y: 18 },
+          {
+            scale: 1,
+            y: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: node,
+              start: "top 78%",
+              end: "top 28%",
+              scrub: 0.6,
+            },
+          },
+        );
+      }
+    },
+    { dependencies: [reduce] },
+  );
+
   return (
     <section id="work" className="section">
       <RevealGroup className="stage">
@@ -62,12 +117,21 @@ export function ProjectSection() {
         <RevealItem as="h2" index={1} className="heading text-fg">
           Featured Projects
         </RevealItem>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {portfolioData.projects.map((project, index) => (
-            <RevealItem key={project.id} index={2 + index} className="h-full">
-              <ProjectCard project={project} onOpen={setActive} />
+        <div className="mt-12 flex flex-col gap-5 md:mt-16 md:gap-6">
+          {featured && (
+            <RevealItem index={2}>
+              <div ref={featuredRef} className="project-scroll-feature">
+                <ProjectCard project={featured} onOpen={setActive} featured />
+              </div>
             </RevealItem>
-          ))}
+          )}
+          <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+            {rest.map((project, index) => (
+              <RevealItem key={project.id} index={3 + index} className="h-full">
+                <ProjectCard project={project} onOpen={setActive} />
+              </RevealItem>
+            ))}
+          </div>
         </div>
       </RevealGroup>
 

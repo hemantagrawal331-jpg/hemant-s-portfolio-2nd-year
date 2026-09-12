@@ -136,6 +136,27 @@ textarea:focus-visible {
   }
 }
 
+@media (pointer: coarse), (hover: none) {
+  .tech-grid-shift,
+  .orbit-spin,
+  .network-path,
+  .node-pulse {
+    animation: none !important;
+  }
+}
+
+.tap-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+@media (min-width: 768px) {
+  .tap-link {
+    min-height: 0;
+  }
+}
+
 .cursor-dot,
 .cursor-ring {
   pointer-events: none;
@@ -256,13 +277,7 @@ textarea:focus-visible {
 
 .section {
   position: relative;
-  padding-block: var(--space-7);
-}
-
-@media (min-width: 768px) {
-  .section {
-    padding-block: var(--space-8);
-  }
+  padding-block: clamp(3.5rem, 7vw, 8rem);
 }
 
 .heading {
@@ -301,6 +316,10 @@ textarea:focus-visible {
 .project-card-scene {
   height: 100%;
   perspective: 900px;
+}
+
+.project-scroll-feature .visual-panel {
+  transform-origin: center;
 }
 
 .project-card {
