@@ -14,6 +14,7 @@ export function ThemeToggle({ lightNav }: { lightNav: boolean }) {
       className={`flex h-10 w-10 items-center justify-center rounded-[4px] border transition-colors ${
         lightNav ? "border-black/15 text-ink hover:bg-black/5" : "border-white/15 text-white hover:bg-white/10"
       }`}
+      data-cursor="link"
     >
       {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>

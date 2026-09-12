@@ -60,7 +60,7 @@ export function ProjectCard({
           type="button"
           className="relative z-[1] flex flex-1 flex-col p-6 text-left sm:p-7"
           onClick={() => onOpen(project)}
-          data-cursor="project"
+          data-cursor="view"
         >
           <div className="mb-8 flex items-center justify-between">
             <p className="font-mono text-[11px] tracking-[0.14em] text-muted">
@@ -70,10 +70,7 @@ export function ProjectCard({
               VIEW ↗
             </span>
           </div>
-          <div
-            className="visual-panel mb-6 h-40 overflow-hidden rounded-2xl border border-line bg-[#111318]"
-            data-cursor="image"
-          >
+          <div className="visual-panel mb-6 h-40 overflow-hidden rounded-2xl border border-line bg-[#111318]">
             {project.image ? (
               <Image
                 src={project.image}
@@ -133,7 +130,6 @@ export function ProjectCard({
             type="button"
             onClick={() => onOpen(project)}
             className="ml-auto text-[11px] tracking-[0.16em] text-muted transition-transform duration-300 group-hover:translate-x-1"
-            data-cursor="project"
           >
             CASE STUDY →
           </button>

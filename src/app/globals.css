@@ -80,6 +80,7 @@ html.lenis body {
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  cursor: none;
   transition: background-color var(--duration) var(--ease), color var(--duration) var(--ease);
 }
 
@@ -92,18 +93,11 @@ body.menu-open {
   color: var(--fg);
 }
 
-body.has-custom-cursor,
-body.has-custom-cursor a,
-body.has-custom-cursor button,
-body.has-custom-cursor [role="button"],
-body.has-custom-cursor [role="tab"] {
+a,
+button,
+input,
+textarea {
   cursor: none;
-}
-
-body.has-custom-cursor input,
-body.has-custom-cursor textarea,
-body.has-custom-cursor select {
-  cursor: text;
 }
 
 a:focus-visible,
@@ -132,73 +126,74 @@ textarea:focus-visible {
   cursor: auto;
 }
 
-@media (pointer: coarse), (hover: none), (max-width: 768px) {
-  body.has-custom-cursor,
-  body.has-custom-cursor a,
-  body.has-custom-cursor button {
+@media (pointer: coarse) {
+  body,
+  a,
+  button,
+  input,
+  textarea {
     cursor: auto;
   }
 }
 
 .cursor-dot,
-.cursor-ring,
-.cursor-chip {
+.cursor-ring {
   pointer-events: none;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 80;
   opacity: 0;
+  mix-blend-mode: difference;
   will-change: transform;
 }
 
-.cursor-dot,
-.cursor-ring {
-  mix-blend-mode: difference;
-}
-
 .cursor-dot {
-  width: 5px;
-  height: 5px;
-  margin: -2.5px 0 0 -2.5px;
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
   border-radius: 999px;
   background: #fff;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, width 0.25s ease, height 0.25s ease;
+}
+
+.cursor-dot.is-view {
+  width: 0;
+  height: 0;
+  margin: 0;
 }
 
 .cursor-ring {
-  width: 22px;
-  height: 22px;
-  margin: -11px 0 0 -11px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 999px;
-  transition:
-    width 0.28s var(--ease),
-    height 0.28s var(--ease),
-    margin 0.28s var(--ease),
-    opacity 0.2s ease;
+  margin: 0;
 }
 
-.cursor-ring.is-interactive {
-  width: 32px;
-  height: 32px;
-  margin: -16px 0 0 -16px;
-}
-
-.cursor-chip {
-  padding: 0.28rem 0.48rem;
+.cursor-ring-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -50%;
+  margin-top: -50%;
+  border: 1px solid rgba(255, 255, 255, 0.88);
   border-radius: 999px;
-  background: rgba(20, 19, 15, 0.88);
-  color: #f2f1ee;
-  font-family: var(--font-mono), ui-monospace, monospace;
+  background: transparent;
+  color: #fff;
   font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.14em;
-  line-height: 1;
-  text-transform: uppercase;
-  white-space: nowrap;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
-  transition: opacity 0.2s ease;
+  letter-spacing: 0.16em;
+  text-align: center;
+  transition:
+    width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.cursor-ring-face.is-link {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cursor-ring-face.is-view {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .stage {
@@ -631,11 +626,5 @@ textarea:focus-visible {
 
   .visual-panel img {
     transform: none !important;
-  }
-
-  .cursor-dot,
-  .cursor-ring,
-  .cursor-chip {
-    display: none !important;
   }
 }
