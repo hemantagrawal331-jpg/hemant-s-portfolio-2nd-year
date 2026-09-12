@@ -10,11 +10,9 @@ const MAX_TILT = 7;
 export function ProjectCard({
   project,
   onOpen,
-  featured = false,
 }: {
   project: Project;
   onOpen: (project: Project) => void;
-  featured?: boolean;
 }) {
   const live = hrefFor(project.live);
   const github = hrefFor(project.github);
@@ -53,9 +51,7 @@ export function ProjectCard({
     <div className="project-card-scene h-full">
       <article
         ref={cardRef}
-        className={`project-card group card card-interactive relative flex h-full flex-col justify-between p-0 ${
-          featured ? "min-h-[420px] md:min-h-[460px]" : "min-h-[360px]"
-        }`}
+        className="project-card group card card-interactive relative flex h-full min-h-[360px] flex-col justify-between p-0"
         onMouseMove={onMove}
         onMouseLeave={resetTilt}
       >
@@ -74,33 +70,22 @@ export function ProjectCard({
               VIEW ↗
             </span>
           </div>
-          <div
-            className={`visual-panel relative mb-6 overflow-hidden rounded-2xl border border-line bg-[#111318] ${
-              featured ? "h-56 md:h-72" : "h-40"
-            }`}
-          >
+          <div className="visual-panel mb-6 h-40 overflow-hidden rounded-2xl border border-line bg-[#111318]">
             {project.image ? (
               <Image
                 src={project.image}
                 alt={`${project.company || project.name} visual`}
                 width={1400}
                 height={600}
-                className={`project-visual-img h-full w-full object-center transition-transform duration-700 ease-cinematic group-hover:scale-[1.045] ${
+                className={`h-full w-full object-center transition-transform duration-700 ease-cinematic group-hover:scale-[1.045] ${
                   project.imageFit === "contain" ? "object-contain" : "object-cover"
                 }`}
               />
             ) : (
               <div className="h-full w-full bg-[linear-gradient(135deg,var(--accent-dim),transparent_62%)]" />
             )}
-            {project.companyRepo ? (
-              <p className="pointer-events-none absolute bottom-3 left-3 max-w-[90%] font-mono text-[10px] tracking-[0.14em] text-white/85">
-                {project.company} · {project.name}
-              </p>
-            ) : null}
           </div>
-          <h3
-            className={`${featured ? "heading" : "title"} text-fg transition-transform duration-500 group-hover:-translate-y-1`}
-          >
+          <h3 className="title text-fg transition-transform duration-500 group-hover:-translate-y-1">
             {project.name}
           </h3>
           <p className="mt-4 text-sm leading-relaxed text-muted">{project.summary}</p>
