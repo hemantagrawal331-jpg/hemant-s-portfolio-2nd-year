@@ -1,58 +1,82 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { portfolioData } from "@/data/portfolioData";
 
+const SEEN_KEY = "ha-boot-seen";
+const LINES = [
+  "INITIALIZING SYSTEM...",
+  ...portfolioData.personal.loaderSteps.map((step) => `${step.index}  ${step.label}`),
+  portfolioData.personal.loaderLine,
+];
+const GAPS = [280, 430, 190, 520, 240, 460, 310];
+const END_PAUSE = 640;
+
 export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void }>) {
-  const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [resolved, setResolved] = useState(0);
+  const [canSkip, setCanSkip] = useState(false);
+  const finished = useRef(false);
+  const timers = useRef<number[]>([]);
+
+  const lines = useMemo(() => LINES, []);
+
+  const finish = useCallback(() => {
+    if (finished.current) return;
+    finished.current = true;
+    timers.current.forEach((id) => window.clearTimeout(id));
+    timers.current = [];
+    setResolved(lines.length);
+    setVisible(false);
+    try {
+      window.localStorage.setItem(SEEN_KEY, "1");
+    } catch {
+      /* ignore quota / private mode */
+    }
+    onComplete();
+  }, [lines.length, onComplete]);
 
   useEffect(() => {
-    let frame = 0;
-    let doneTimer = 0;
-    let finished = false;
+    let seen = false;
+    try {
+      seen = window.localStorage.getItem(SEEN_KEY) === "1";
+    } catch {
+      seen = false;
+    }
+    setCanSkip(seen);
 
-    const finish = () => {
-      if (finished) return;
-      finished = true;
-      setProgress(100);
-      setVisible(false);
-      onComplete();
-    };
-
-    const failsafe = window.setTimeout(finish, 1800);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     if (reduced) {
-      doneTimer = window.setTimeout(finish, 40);
-      return () => {
-        window.clearTimeout(failsafe);
-        window.clearTimeout(doneTimer);
-      };
+      const id = window.setTimeout(finish, 40);
+      timers.current.push(id);
+      return () => window.clearTimeout(id);
     }
 
-    const started = performance.now();
-    const duration = 1100;
+    let elapsed = 0;
+    lines.forEach((_, index) => {
+      elapsed += GAPS[index] ?? 300;
+      const id = window.setTimeout(() => setResolved(index + 1), elapsed);
+      timers.current.push(id);
+    });
 
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - started) / duration);
-      const eased = 1 - Math.pow(1 - t, 3);
-      setProgress(Math.round(eased * 100));
-      if (t < 1) {
-        frame = requestAnimationFrame(tick);
-      } else {
-        doneTimer = window.setTimeout(finish, 160);
-      }
-    };
+    const endId = window.setTimeout(finish, elapsed + END_PAUSE);
+    timers.current.push(endId);
 
-    frame = requestAnimationFrame(tick);
     return () => {
-      window.clearTimeout(failsafe);
-      window.clearTimeout(doneTimer);
-      cancelAnimationFrame(frame);
+      timers.current.forEach((id) => window.clearTimeout(id));
+      timers.current = [];
     };
-  }, [onComplete]);
+  }, [finish, lines]);
+
+  useEffect(() => {
+    if (!canSkip) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape" || event.key === "Enter") finish();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [canSkip, finish]);
 
   return (
     <AnimatePresence>
@@ -77,22 +101,29 @@ export function LoadingScreen({ onComplete }: Readonly<{ onComplete: () => void 
             <p className="mt-4 text-[11px] tracking-[0.28em] text-white/42">
               CSE × AI/ML × AUTOMATION
             </p>
-            <p className="mt-14 font-mono text-[11px] tracking-[0.22em] text-white/35">
-              INITIALIZING SYSTEM...
-            </p>
-            <div className="mt-4 flex w-full items-center gap-4">
-              <div className="h-[3px] flex-1 overflow-hidden bg-white/12">
-                <motion.div
-                  className="h-full bg-white"
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.1, ease: "linear" }}
-                />
-              </div>
-              <span className="font-mono text-[11px] tracking-[0.16em] text-white/55">
-                {String(progress).padStart(3, "0")}%
-              </span>
-            </div>
+            <ul className="mt-12 w-full space-y-2 text-left font-mono text-[11px] tracking-[0.16em] text-white/70">
+              {lines.slice(0, resolved).map((line) => (
+                <li key={line} className="flex items-center justify-between gap-4">
+                  <span>{line}</span>
+                  <span className="text-white/35">ok</span>
+                </li>
+              ))}
+              {resolved < lines.length ? (
+                <li className="flex h-4 items-center">
+                  <span className="terminal-caret" aria-hidden />
+                </li>
+              ) : null}
+            </ul>
           </div>
+          {canSkip && (
+            <button
+              type="button"
+              onClick={finish}
+              className="absolute bottom-6 right-6 font-mono text-[11px] tracking-[0.18em] text-white/45 transition-colors hover:text-white"
+            >
+              SKIP ↵
+            </button>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
