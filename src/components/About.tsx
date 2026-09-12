@@ -17,7 +17,7 @@ export function About() {
             <RevealItem index={0}>
               <TerminalKicker text="// ABOUT" className="mb-4" />
             </RevealItem>
-            <RevealItem as="h2" index={1} className="max-w-2xl font-display text-2xl font-medium tracking-tight text-fg md:text-3xl">
+            <RevealItem as="h2" index={1} className="heading max-w-2xl text-fg">
               {portfolioData.personal.about.heading}
             </RevealItem>
           </div>
@@ -43,7 +43,7 @@ export function About() {
           </RevealItem>
 
           <RevealItem index={4}>
-            <div className="space-y-4 text-base font-normal leading-relaxed text-muted md:text-lg">
+            <div className="body-copy space-y-4 text-muted">
               <p>
                 <EmphasisText text={lead} />
               </p>
@@ -55,7 +55,7 @@ export function About() {
             </div>
             <div className="mt-8">
               <p className="label mb-3">{portfolioData.personal.about.approachLabel}</p>
-              <p className="font-display text-lg tracking-tight text-fg md:text-xl">
+              <p className="lede text-fg">
                 {portfolioData.personal.about.approach}
               </p>
             </div>

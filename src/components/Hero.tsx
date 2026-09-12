@@ -17,9 +17,9 @@ gsap.registerPlugin(ScrollTrigger);
 function headlineBlocks(lines: readonly string[]) {
   return lines.map((line) => {
     const text = line.toUpperCase();
-    if (text.startsWith("I BUILD")) return ["I BUILD", "INTELLIGENT", "SYSTEMS."];
-    if (text.startsWith("AUTOMATE")) return ["AUTOMATE QUALITY."];
-    if (text.startsWith("SOLVE")) return ["SOLVE REAL", "PROBLEMS."];
+    if (text.startsWith("I BUILD")) return ["I BUILD", "INTELLIGENT SYSTEMS."];
+    if (text.startsWith("AUTOMATE")) return ["AUTOMATE", "QUALITY."];
+    if (text.startsWith("SOLVE")) return ["SOLVE", "REAL PROBLEMS."];
     return [text];
   });
 }
@@ -85,10 +85,10 @@ export function Hero({ ready }: { ready: boolean }) {
       <div className="stage relative flex min-h-[calc(100svh-4.5rem)] flex-col justify-end pb-8 pt-10 lg:min-h-[calc(100svh-4.5rem)] lg:justify-center lg:pb-0">
         <div className="relative z-10 flex flex-col gap-10 lg:grid lg:grid-cols-[1.15fr_0.7fr_0.95fr] lg:items-center">
           <motion.div className="max-w-2xl" style={{ x: text.x, y: text.y }}>
-            <p className="mb-3 text-[13px] tracking-[0.08em] text-ink/50">
+            <p className="meta mb-3 text-ink/50">
               {portfolioData.personal.eyebrow}
             </p>
-            <p className="mb-5 h-5 overflow-hidden font-mono text-[11px] tracking-[0.18em] text-ink/55">
+            <p className="meta mb-6 h-5 overflow-hidden text-ink/55">
               <motion.span
                 key={roles[roleIndex]}
                 className="block"
@@ -99,9 +99,9 @@ export function Hero({ ready }: { ready: boolean }) {
                 {roles[roleIndex]}
               </motion.span>
             </p>
-            <h1 className="display w-full text-[clamp(2.05rem,5vw,4.15rem)] text-ink">
+            <h1 className="display display-hero w-full max-w-[16ch] text-ink sm:max-w-none">
               {headlines.map((block, blockIndex) => (
-                <span key={block.join(" ")} className={blockIndex > 0 ? "mt-3 block" : "block"}>
+                <span key={block.join(" ")} className={blockIndex > 0 ? "mt-[0.55em] block" : "block"}>
                   {block.map((line, lineIndex) => (
                     <span key={line} className="block overflow-hidden">
                       <motion.span
@@ -121,11 +121,11 @@ export function Hero({ ready }: { ready: boolean }) {
                 </span>
               ))}
             </h1>
-            <p className="mt-5 font-display text-lg tracking-tight text-ink/78 md:text-xl">
+            <p className="lede mt-8 max-w-xl text-ink/78">
               {portfolioData.personal.heroLine}
             </p>
             <motion.p
-              className="mt-4 max-w-xl text-sm leading-relaxed text-ink/62 md:text-base"
+              className="body-copy mt-4 max-w-xl text-ink/62"
               initial={reduce ? false : { opacity: 0, y: 16 }}
               animate={show ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 0.6, delay: 0.72, ease: [0.16, 1, 0.3, 1] }}
@@ -147,7 +147,7 @@ export function Hero({ ready }: { ready: boolean }) {
 
           <motion.div className="relative z-10 max-w-sm lg:ml-auto lg:text-right" style={{ x: network.x, y: network.y }}>
             <HeroNetwork />
-            <p className="mt-1 text-center font-mono text-[10px] tracking-[0.16em] text-ink/32 lg:text-right">
+            <p className="meta mt-1 text-center text-ink/32 lg:text-right">
               AI / ML → AUTOMATION → SOFTWARE QUALITY
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">

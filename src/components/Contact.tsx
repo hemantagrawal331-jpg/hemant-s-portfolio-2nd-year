@@ -38,17 +38,17 @@ export function Contact() {
           <RevealItem index={0}>
             <TerminalKicker text="// CONTACT" className="mb-5" />
           </RevealItem>
-          <RevealItem as="h2" index={1} className="display max-w-3xl text-[clamp(2.6rem,8vw,7rem)] text-fg">
+          <RevealItem as="h2" index={1} className="display max-w-3xl text-fg">
             {contactHeading.map((line) => (
               <span key={line} className="block">
                 {line}
               </span>
             ))}
           </RevealItem>
-          <RevealItem as="p" index={2} className="mt-6 max-w-md text-lg text-muted">
+          <RevealItem as="p" index={2} className="lede mt-6 max-w-md text-muted">
             Have an idea? Let&apos;s talk.
           </RevealItem>
-          <RevealItem as="p" index={3} className="mt-3 max-w-md text-sm leading-relaxed text-muted">
+          <RevealItem as="p" index={3} className="body-copy mt-3 max-w-md text-muted">
             {portfolioData.contact.text}
           </RevealItem>
           <RevealItem index={4} className="mt-6 flex flex-col gap-1">

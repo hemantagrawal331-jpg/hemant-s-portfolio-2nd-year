@@ -23,7 +23,7 @@ export function GithubSection() {
             <div className="card flex h-full flex-col justify-between p-6 md:p-8">
               <div>
                 <p className="label mb-6">GitHub</p>
-                <p className="font-display text-3xl tracking-tight text-fg md:text-5xl">
+                <p className="heading text-fg">
                   {portfolioData.personal.name}
                 </p>
                 <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
@@ -49,7 +49,7 @@ export function GithubSection() {
             <RevealItem index={start + 1}>
               <div className="card card-interactive p-5 md:p-6">
                 <p className="label">Major internship project</p>
-                <p className="mt-3 font-display text-2xl text-fg">{portfolioData.personal.githubRepoName}</p>
+                <p className="title mt-3 text-fg">{portfolioData.personal.githubRepoName}</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   Java API automation framework at Attentive.ai. Pushed to the company repository — no public GitHub link.
                 </p>
@@ -58,7 +58,7 @@ export function GithubSection() {
             <RevealItem index={start + 2}>
               <div className="card card-interactive p-5 md:p-6">
                 <p className="label">More internship projects</p>
-                <p className="mt-3 font-display text-2xl text-fg">Beam MT API Automation</p>
+                <p className="title mt-3 text-fg">Beam MT API Automation</p>
                 <p className="mt-2 text-sm leading-relaxed text-muted">
                   Authentication, file-upload, request-status, and other API workflows during the Attentive.ai internship. Also in the company repository.
                 </p>

@@ -17,10 +17,10 @@ export function Resume() {
             <RevealItem index={0}>
               <TerminalKicker text="// RESUME" className="mb-4" />
             </RevealItem>
-            <RevealItem as="h2" index={1} className="display text-[clamp(2.4rem,8vw,5.5rem)] text-fg">
+            <RevealItem as="h2" index={1} className="display text-fg">
               RESUME
             </RevealItem>
-            <RevealItem as="p" index={2} className="mt-4 max-w-md text-sm leading-relaxed text-muted md:text-base">
+            <RevealItem as="p" index={2} className="body-copy mt-4 max-w-md text-muted">
               {portfolioData.social.resumeText}
             </RevealItem>
             <RevealItem index={3} className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -47,7 +47,7 @@ export function Resume() {
 
           <RevealItem index={5} className="w-full max-w-xs border border-line px-5 py-6 md:ml-auto">
             <p className="label">RESUME</p>
-            <p className="mt-4 font-display text-2xl tracking-tight text-fg">
+            <p className="title mt-4 text-fg">
               {portfolioData.personal.name}
             </p>
             <p className="mt-2 text-sm text-muted">CSE · AI/ML · QA Automation</p>

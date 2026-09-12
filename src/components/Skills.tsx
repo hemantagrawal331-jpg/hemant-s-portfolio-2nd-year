@@ -116,7 +116,7 @@ export function Skills() {
                     }`}
                     data-cursor="link"
                   >
-                    <span className="font-display text-lg text-fg md:text-xl">{category.label}</span>
+                    <span className="title text-fg">{category.label}</span>
                     <span className="font-mono text-[11px] text-muted">{String(index + 1).padStart(2, "0")}</span>
                   </button>
                 </RevealItem>

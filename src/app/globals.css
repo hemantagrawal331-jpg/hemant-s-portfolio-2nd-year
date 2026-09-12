@@ -29,6 +29,13 @@
   --radius: 12px;
   --duration: 280ms;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-hero: clamp(1.9rem, 0.82rem + 4.9vw, 6.25rem);
+  --text-display: clamp(2.1rem, 1.15rem + 3.4vw, 5rem);
+  --text-heading: clamp(1.75rem, 1.15rem + 2vw, 3.5rem);
+  --text-title: clamp(1.25rem, 1.05rem + 0.8vw, 2rem);
+  --text-lede: clamp(1.05rem, 0.96rem + 0.35vw, 1.25rem);
+  --text-body: clamp(0.95rem, 0.92rem + 0.15vw, 1.0625rem);
+  --text-meta: 0.6875rem;
   --bg: var(--background);
   --fg: var(--foreground);
   --line: var(--border);
@@ -202,19 +209,49 @@ textarea:focus-visible {
 
 .display {
   font-family: var(--font-display), sans-serif;
+  font-size: var(--text-display);
   font-weight: 700;
-  letter-spacing: -0.038em;
+  letter-spacing: -0.04em;
   line-height: 0.9;
   text-transform: uppercase;
 }
 
-.label {
+.display-hero {
+  font-size: var(--text-hero);
+  letter-spacing: -0.045em;
+  line-height: 0.86;
+}
+
+.label,
+.meta {
   font-family: var(--font-mono), ui-monospace, monospace;
-  font-size: 11px;
+  font-size: var(--text-meta);
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+.lede {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--text-lede);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+.body-copy {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.7;
+}
+
+.mono-stat {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: clamp(1.25rem, 1rem + 1.1vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
 }
 
 .section {
@@ -230,9 +267,18 @@ textarea:focus-visible {
 
 .heading {
   font-family: var(--font-display), sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.038em;
+  font-size: var(--text-heading);
+  font-weight: 700;
+  letter-spacing: -0.04em;
   line-height: 1.02;
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-title);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 .card {

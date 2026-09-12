@@ -15,11 +15,11 @@ export function Learning() {
           {portfolioData.learning.map((item, index) => (
             <RevealItem key={item.title} index={start + index}>
               <article className="card card-interactive h-full p-6">
-                <p className="font-mono text-[11px] tracking-[0.16em] text-muted">
+                <p className="meta">
                   {`learn/${String(index + 1).padStart(2, "0")}`}
                 </p>
-                <h3 className="mt-4 text-xl text-fg">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{item.text}</p>
+                <h3 className="title mt-4 text-fg">{item.title}</h3>
+                <p className="body-copy mt-3 text-muted">{item.text}</p>
               </article>
             </RevealItem>
           ))}

@@ -17,11 +17,11 @@ export function Experience() {
           <article className="card card-interactive p-6 md:p-10">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <p className="font-mono text-[12px] tracking-[0.18em] text-muted">01 / {job.status}</p>
-                <h3 className="mt-3 font-display text-2xl font-semibold text-fg md:text-4xl">{job.role}</h3>
-                <p className="mt-2 text-lg text-fg/80">{job.company}</p>
+                <p className="meta">01 / {job.status}</p>
+                <h3 className="heading mt-3 text-fg">{job.role}</h3>
+                <p className="lede mt-2 text-fg/80">{job.company}</p>
               </div>
-              <p className="font-mono text-[11px] tracking-[0.14em] text-muted">QA / SDET</p>
+              <p className="meta">QA / SDET</p>
             </div>
             <p className="mt-6 max-w-3xl leading-relaxed text-muted">{job.summary}</p>
             <div className="mt-8 flex flex-wrap gap-2">

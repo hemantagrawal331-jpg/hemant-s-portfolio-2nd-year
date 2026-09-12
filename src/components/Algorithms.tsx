@@ -21,7 +21,7 @@ export function Algorithms() {
             <RevealItem key={item.name} index={start + index}>
               <article className="card card-interactive h-full p-5">
                 <p className="text-sm text-muted">{item.name}</p>
-                <p className="mt-3 font-mono text-2xl text-fg md:text-3xl">{item.complexity}</p>
+                <p className="mono-stat mt-3 text-fg">{item.complexity}</p>
                 <p className="mt-2 text-[12px] text-muted">{item.note}</p>
               </article>
             </RevealItem>

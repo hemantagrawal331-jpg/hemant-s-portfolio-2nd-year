@@ -85,7 +85,7 @@ export function ProjectCard({
               <div className="h-full w-full bg-[linear-gradient(135deg,var(--accent-dim),transparent_62%)]" />
             )}
           </div>
-          <h3 className="font-display text-2xl font-semibold tracking-tight text-fg transition-transform duration-500 group-hover:-translate-y-1 md:text-3xl">
+          <h3 className="title text-fg transition-transform duration-500 group-hover:-translate-y-1">
             {project.name}
           </h3>
           <p className="mt-4 text-sm leading-relaxed text-muted">{project.summary}</p>

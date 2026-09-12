@@ -59,7 +59,7 @@ export function ProjectSection() {
         <RevealItem index={0}>
           <TerminalKicker text="// PROJECTS · BUILD" className="mb-4" />
         </RevealItem>
-        <RevealItem as="h2" index={1} className="heading text-3xl text-fg sm:text-4xl md:text-5xl lg:text-6xl">
+        <RevealItem as="h2" index={1} className="heading text-fg">
           Featured Projects
         </RevealItem>
         <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -88,7 +88,7 @@ export function ProjectSection() {
               <div className="mb-10 flex items-start justify-between gap-6">
                 <div>
                   <p className="label mb-4">{`// PROJECT ${active.index}`}</p>
-                  <h3 id="case-study-title" className="font-display text-4xl font-semibold text-fg md:text-5xl">
+                  <h3 id="case-study-title" className="heading text-fg">
                     {active.name}
                   </h3>
                   <p className="mt-3 font-mono text-[11px] tracking-[0.16em] text-muted">{active.tag}</p>
@@ -115,7 +115,7 @@ export function ProjectSection() {
                   />
                 </div>
               )}
-              <p id="case-study-copy" className="max-w-3xl text-lg leading-relaxed text-muted">
+              <p id="case-study-copy" className="body-copy max-w-3xl text-muted">
                 {active.description}
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
