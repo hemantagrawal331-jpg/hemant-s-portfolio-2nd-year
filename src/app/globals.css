@@ -113,6 +113,66 @@ textarea:focus-visible {
   }
 }
 
+.cursor-dot,
+.cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  opacity: 0;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.cursor-dot {
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 999px;
+  background: #fff;
+  transition: opacity 0.2s ease, width 0.25s ease, height 0.25s ease;
+}
+
+.cursor-dot.is-view {
+  width: 0;
+  height: 0;
+  margin: 0;
+}
+
+.cursor-ring {
+  margin: 0;
+}
+
+.cursor-ring-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -50%;
+  margin-top: -50%;
+  border: 1px solid rgba(255, 255, 255, 0.88);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-align: center;
+  transition:
+    width 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.32s ease,
+    border-color 0.32s ease;
+}
+
+.cursor-ring-face.is-link {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cursor-ring-face.is-view {
+  background: rgba(255, 255, 255, 0.12);
+}
+
 .stage {
   width: min(1320px, calc(100% - 40px));
   margin-inline: auto;

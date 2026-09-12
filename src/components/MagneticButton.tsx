@@ -1,7 +1,8 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
+import { useMedia } from "@/lib/useMedia";
 
 type Props = {
   children: ReactNode;
@@ -14,6 +15,7 @@ type Props = {
   disabled?: boolean;
   onClick?: () => void;
   strength?: number;
+  radius?: number;
 };
 
 export function MagneticButton({
@@ -26,26 +28,55 @@ export function MagneticButton({
   type = "button",
   disabled,
   onClick,
-  strength = 10,
+  strength = 14,
+  radius = 88,
 }: Props) {
+  const coarse = useMedia("(pointer: coarse)");
+  const reduced = useMedia("(prefers-reduced-motion: reduce)");
+  const magnetic = !coarse && !reduced && !disabled;
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 260, damping: 18, mass: 0.3 });
-  const springY = useSpring(y, { stiffness: 260, damping: 18, mass: 0.3 });
+  const springX = useSpring(x, { stiffness: 340, damping: 22, mass: 0.28 });
+  const springY = useSpring(y, { stiffness: 340, damping: 22, mass: 0.28 });
   const linkRef = useRef<HTMLAnchorElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const onMove = (event: React.MouseEvent<HTMLElement>) => {
-    const node = href ? linkRef.current : buttonRef.current;
-    if (!node || window.matchMedia("(pointer: coarse)").matches) return;
-    const rect = node.getBoundingClientRect();
-    x.set(((event.clientX - rect.left) / rect.width - 0.5) * strength);
-    y.set(((event.clientY - rect.top) / rect.height - 0.5) * strength);
-  };
+  useEffect(() => {
+    if (!magnetic) {
+      x.set(0);
+      y.set(0);
+      return;
+    }
 
-  const onLeave = () => {
-    x.set(0);
-    y.set(0);
+    const node = href ? linkRef.current : buttonRef.current;
+    if (!node) return;
+
+    const onMove = (event: MouseEvent) => {
+      const rect = node.getBoundingClientRect();
+      const dx = event.clientX - (rect.left + rect.width / 2);
+      const dy = event.clientY - (rect.top + rect.height / 2);
+      const distance = Math.hypot(dx, dy);
+
+      if (distance >= radius) {
+        x.set(0);
+        y.set(0);
+        return;
+      }
+
+      const falloff = 1 - distance / radius;
+      x.set(dx * (strength / radius) * falloff * 2.2);
+      y.set(dy * (strength / radius) * falloff * 2.2);
+    };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => window.removeEventListener("mousemove", onMove);
+  }, [href, magnetic, radius, strength, x, y]);
+
+  const shared = {
+    className,
+    onClick,
+    style: magnetic ? { x: springX, y: springY } : undefined,
+    "data-cursor": "link" as const,
   };
 
   if (href) {
@@ -56,12 +87,7 @@ export function MagneticButton({
         download={download}
         target={target}
         rel={rel}
-        onClick={onClick}
-        className={className}
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
-        style={{ x: springX, y: springY }}
-        data-cursor="link"
+        {...shared}
       >
         {children}
       </motion.a>
@@ -69,17 +95,7 @@ export function MagneticButton({
   }
 
   return (
-    <motion.button
-      ref={buttonRef}
-      type={type}
-      disabled={disabled}
-      onClick={onClick}
-      className={className}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ x: springX, y: springY }}
-      data-cursor="link"
-    >
+    <motion.button ref={buttonRef} type={type} disabled={disabled} {...shared}>
       {children}
     </motion.button>
   );
