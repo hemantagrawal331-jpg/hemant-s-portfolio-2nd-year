@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
-import { validateContactInput } from "@/lib/contactForm";
+import { formSubmitPayload, isFormSubmitDelivered, validateContactInput } from "@/lib/contactForm";
 import { MagneticButton } from "./MagneticButton";
 import { RevealGroup, RevealItem } from "./Reveal";
 import { TerminalKicker } from "./TerminalKicker";
@@ -50,16 +50,37 @@ export function Contact() {
     setError("");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
-      if (!response.ok || !result?.ok) {
+      if (response.ok && result?.ok) {
+        setStatus("success");
+        form.reset();
+        return;
+      }
+
+      if (response.status === 400 || response.status === 429) {
         setStatus("error");
         setError(result?.error || "Could not send the message. Try again.");
+        return;
+      }
+
+      const fallback = await fetch(
+        `https://formsubmit.co/ajax/${encodeURIComponent(portfolioData.social.personalEmail)}`,
+        {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(formSubmitPayload(payload)),
+        },
+      );
+      const delivered = isFormSubmitDelivered(await fallback.json().catch(() => null));
+      if (!delivered) {
+        setStatus("error");
+        setError(result?.error || "Could not send the message. Try again, or email Hemant directly.");
         return;
       }
 
@@ -67,7 +88,7 @@ export function Contact() {
       form.reset();
     } catch {
       setStatus("error");
-      setError("Could not send the message. Try again.");
+      setError("Could not send the message. Try again, or email Hemant directly.");
     }
   };
 

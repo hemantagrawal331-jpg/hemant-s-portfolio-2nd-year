@@ -31,3 +31,24 @@ export function validateContactInput(input: ContactPayload) {
 
   return null;
 }
+
+export function isFormSubmitDelivered(payload: unknown) {
+  if (!payload || typeof payload !== "object") return false;
+  const result = payload as { success?: unknown; message?: unknown };
+  const ok = result.success === true || result.success === "true";
+  const message = typeof result.message === "string" ? result.message : "";
+  return ok && !/activat/i.test(message);
+}
+
+export function formSubmitPayload(input: ContactPayload) {
+  const data = parseContactInput(input);
+  return {
+    name: data.name,
+    email: data.email,
+    message: data.message,
+    _replyto: data.email,
+    _subject: `Portfolio inquiry from ${data.name}`,
+    _captcha: "false",
+    _template: "box",
+  };
+}
