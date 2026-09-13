@@ -2,12 +2,16 @@
 
 import { FormEvent, useState } from "react";
 import { hrefFor, portfolioData } from "@/data/portfolioData";
+import { validateContactInput } from "@/lib/contactForm";
 import { MagneticButton } from "./MagneticButton";
 import { RevealGroup, RevealItem } from "./Reveal";
 import { TerminalKicker } from "./TerminalKicker";
 
+type FormStatus = "idle" | "loading" | "success" | "error";
+
 export function Contact() {
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [error, setError] = useState("");
   const email = hrefFor(portfolioData.social.email, "email");
   const github = hrefFor(portfolioData.social.github);
   const linkedin = hrefFor(portfolioData.social.linkedin);
@@ -18,17 +22,53 @@ export function Contact() {
     return [words.slice(0, 2).join(" "), words[2] ?? "", `${words.slice(3).join(" ")}.`].filter(Boolean);
   })();
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!email) return;
-    const data = new FormData(event.currentTarget);
-    const subject = encodeURIComponent("Portfolio inquiry");
-    const name = String(data.get("name") ?? "");
-    const from = String(data.get("email") ?? "");
-    const message = String(data.get("message") ?? "");
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${from}\n\n${message}`);
-    window.location.href = `${email}?subject=${subject}&body=${body}`;
-    setSent(true);
+    if (status === "loading") return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const field = (key: string) => {
+      const value = data.get(key);
+      return typeof value === "string" ? value : "";
+    };
+    const payload = {
+      name: field("name"),
+      email: field("email"),
+      message: field("message"),
+      website: field("website"),
+    };
+
+    const invalid = validateContactInput(payload);
+    if (invalid) {
+      setStatus("error");
+      setError(invalid);
+      return;
+    }
+
+    setStatus("loading");
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const result = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+
+      if (!response.ok || !result?.ok) {
+        setStatus("error");
+        setError(result?.error || "Could not send the message. Try again.");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setError("Could not send the message. Try again.");
+    }
   };
 
   return (
@@ -103,42 +143,75 @@ export function Contact() {
         </div>
 
         <RevealItem index={6}>
-          <form onSubmit={onSubmit} className="glass grid gap-3 p-6">
-          <label className="grid gap-2">
-            <span className="text-[12px] tracking-[0.14em] text-muted">NAME</span>
-            <input
-              name="name"
-              required
-              autoComplete="name"
-              className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
-            />
-          </label>
-          <label className="grid gap-2">
-            <span className="text-[12px] tracking-[0.14em] text-muted">EMAIL</span>
-            <input
-              name="email"
-              type="email"
-              required
-              autoComplete="email"
-              className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
-            />
-          </label>
-          <label className="grid gap-2">
-            <span className="text-[12px] tracking-[0.14em] text-muted">MESSAGE</span>
-            <textarea
-              name="message"
-              required
-              className="min-h-32 rounded-[var(--radius)] border border-line bg-bg/60 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
-            />
-          </label>
-          <MagneticButton
-            type="submit"
-            disabled={!email}
-            className="w-full rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40 sm:w-auto"
+          <form
+            onSubmit={onSubmit}
+            noValidate
+            className="relative glass grid gap-3 p-6"
+            aria-busy={status === "loading"}
           >
-            {!email ? "ADD YOUR_EMAIL TO ENABLE" : sent ? "OPENING EMAIL" : "SEND MESSAGE ↗"}
-          </MagneticButton>
-        </form>
+            <label className="grid gap-2">
+              <span className="text-[12px] tracking-[0.14em] text-muted">NAME</span>
+              <input
+                name="name"
+                required
+                minLength={2}
+                maxLength={80}
+                autoComplete="name"
+                disabled={status === "loading"}
+                onChange={() => status !== "idle" && setStatus("idle")}
+                className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
+              />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-[12px] tracking-[0.14em] text-muted">EMAIL</span>
+              <input
+                name="email"
+                type="email"
+                required
+                autoComplete="email"
+                disabled={status === "loading"}
+                onChange={() => status !== "idle" && setStatus("idle")}
+                className="rounded-[var(--radius)] border border-line bg-bg/60 px-4 py-4 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
+              />
+            </label>
+            <label className="grid gap-2">
+              <span className="text-[12px] tracking-[0.14em] text-muted">MESSAGE</span>
+              <textarea
+                name="message"
+                required
+                minLength={10}
+                maxLength={2000}
+                disabled={status === "loading"}
+                onChange={() => status !== "idle" && setStatus("idle")}
+                className="min-h-32 rounded-[var(--radius)] border border-line bg-bg/60 font-mono text-sm text-fg outline-none focus:border-[var(--accent)]"
+              />
+            </label>
+            <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+              <label>
+                Website
+                <input name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </label>
+            </div>
+            {status === "error" && error ? (
+              <p className="text-sm text-muted" role="alert">
+                {error}
+              </p>
+            ) : null}
+            {status === "success" ? (
+              <p className="text-sm text-fg" role="status">
+                Message sent.
+              </p>
+            ) : null}
+            <MagneticButton
+              type="submit"
+              disabled={status === "loading"}
+              className="w-full rounded-full bg-invert px-6 py-4 text-[12px] tracking-[0.16em] text-invert-fg disabled:opacity-40 sm:w-auto"
+            >
+              {status === "loading" ? "SENDING…" : null}
+              {status === "success" ? "MESSAGE SENT" : null}
+              {status === "idle" || status === "error" ? "SEND MESSAGE ↗" : null}
+            </MagneticButton>
+          </form>
         </RevealItem>
       </RevealGroup>
     </section>
